@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Glow by Astou</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="public/Logo.jpeg" type="image/x-icon">
+  <style>
+    /* Admin Panel Colors and Fonts (consistent with shop page) */
+    :root {
+      --primary: #ffb7c5;
+      --primary-dark: #ff9fb4;
+      --secondary: #203239;
+      --accent: #2a3c48;
+      --light: #ffffff;
+      --text-light: #f8f9fa;
+      --text-muted: #e9ecef;
+      --gradient-primary: linear-gradient(135deg, #ff9fb4 0%, #ffb7c5 100%);
+      --gradient-dark: linear-gradient(135deg, #203239 0%, #2a3c48 100%);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      --shadow-light: 0 5px 15px rgba(255, 183, 197, 0.3);
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--secondary);
+      color: var(--text-light);
+      padding: 2rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #fff, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .login-box {
+      background: var(--accent);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      max-width: 400px;
+      margin: 5rem auto;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 183, 197, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-light);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    .login-box input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: var(--shadow-light);
+    }
+    .login-box button {
+      width: 100%;
+    }
+
+    #adminContent {
+      display: none;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: var(--accent);
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow-light);
+      margin-bottom: 2rem;
+    }
+    
+    form input, form textarea {
+      flex: 1 1 200px;
+      padding: 1rem;
+      border: 1px solid rgba(255, 183, 197, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-light);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    form input:focus, form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 183, 197, 0.4);
+    }
+    form textarea {
+      flex-basis: 100%;
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    button {
+      padding: 1rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: var(--gradient-primary);
+      color: var(--secondary);
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+    
+    button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-light);
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 2rem;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    
+    th, td {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      text-align: left;
+    }
+    
+    th {
+      background: var(--accent);
+      color: var(--primary);
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+    }
+    
+    td {
+      background: var(--accent);
+    }
+    
+    tr:nth-child(even) td {
+      background: #304450;
+    }
+    
+    img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 183, 197, 0.3);
+    }
+    
+    .actions button {
+      margin-right: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border-radius: 20px;
+    }
+    
+    .edit {
+      background: #007bff;
+    }
+    
+    .edit:hover {
+      background: #0056b3;
+    }
+    
+    .delete {
+      background: #dc3545;
+    }
+    
+    .delete:hover {
+      background: #c82333;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding: 1rem;
+        }
+        h1 {
+            font-size: 2rem;
+        }
+        form {
+            flex-direction: column;
+        }
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+        tr {
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        td {
+            border: none;
+            position: relative;
+            padding-left: 50%;
+            text-align: right;
+        }
+        td:before {
+            content: attr(data-label);
+            position: absolute;
+            left: 1rem;
+            width: calc(50% - 1.5rem);
+            white-space: nowrap;
+            text-align: left;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        td:first-of-type {
+            padding-top: 1.5rem;
+        }
+        td:last-of-type {
+            padding-bottom: 1.5rem;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="loginSection">
+      <div class="login-box">
+        <h2>Admin Login</h2>
+        <p style="color:var(--text-muted);">Enter password to continue.</p>
+        <input type="password" id="passwordInput" placeholder="Password" required>
+        <button id="loginButton">Log In</button>
+      </div>
+    </div>
+
+    <div id="adminContent">
+      <h1>Admin Panel</h1>
+
+      <form id="productForm">
+        <input type="hidden" id="editIndex">
+        <input type="text" id="name" placeholder="Product Name" required>
+        <input type="text" id="price" placeholder="Price (CFA)" required>
+        <input type="text" id="image" placeholder="Image URL" required>
+        <textarea id="description" placeholder="Product Description" required></textarea>
+        <input type="text" id="whatsapp" placeholder="WhatsApp Message" required>
+        <button type="submit">Add Product</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>WhatsApp Msg</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById("productForm");
+      const table = document.getElementById("productTable");
+      const editIndex = document.getElementById("editIndex");
+
+      // Password Protection
+      const password = "admin123"; // **CHANGE THIS TO A SECURE PASSWORD**
+      const loginSection = document.getElementById("loginSection");
+      const adminContent = document.getElementById("adminContent");
+      const passwordInput = document.getElementById("passwordInput");
+      const loginButton = document.getElementById("loginButton");
+
+      loginButton.addEventListener("click", () => {
+        if (passwordInput.value === password) {
+          loginSection.style.display = "none";
+          adminContent.style.display = "block";
+          loadProducts();
+        } else {
+          alert("❌ Incorrect password!");
+          passwordInput.value = "";
+        }
+      });
+      passwordInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          loginButton.click();
+        }
+      });
+
+      // Load existing products
+      function loadProducts() {
+        let products = JSON.parse(localStorage.getItem("products")) || [];
+        table.innerHTML = "";
+        products.forEach((p, i) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td data-label="Image"><img src="${p.image}" alt="${p.name}"></td>
+            <td data-label="Name">${p.name}</td>
+            <td data-label="Price">${p.price} CFA</td>
+            <td data-label="Description">${p.description}</td>
+            <td data-label="WhatsApp Msg">${p.whatsapp}</td>
+            <td class="actions" data-label="Actions">
+              <button class="edit" onclick="editProduct(${i})">Edit</button>
+              <button class="delete" onclick="deleteProduct(${i})">Delete</button>
+            </td>
+          `;
+          table.appendChild(row);
+        });
+      }
+
+      // Add / Update product
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        let name = document.getElementById("name").value;
+        let price = document.getElementById("price").value;
+        let image = document.getElementById("image").value;
+        let description = document.getElementById("description").value;
+        let whatsapp = document.getElementById("whatsapp").value;
+        let products = JSON.parse(localStorage.getItem("products")) || [];
+
+        if (editIndex.value) {
+          // Update existing product
+          products[editIndex.value] = { name, price, image, description, whatsapp };
+          editIndex.value = "";
+          form.querySelector("button[type='submit']").innerText = "Add Product";
+        } else {
+          // Add new product
+          products.push({ name, price, image, description, whatsapp });
+        }
+
+        localStorage.setItem("products", JSON.stringify(products));
+        loadProducts();
+        form.reset();
+      });
+
+      // Edit product
+      window.editProduct = function(index) {
+        let products = JSON.parse(localStorage.getItem("products")) || [];
+        let p = products[index];
+        document.getElementById("name").value = p.name;
+        document.getElementById("price").value = p.price;
+        document.getElementById("image").value = p.image;
+        document.getElementById("description").value = p.description;
+        document.getElementById("whatsapp").value = p.whatsapp;
+        editIndex.value = index;
+        form.querySelector("button[type='submit']").innerText = "Update Product";
+      }
+
+      // Delete product
+      window.deleteProduct = function(index) {
+        let products = JSON.parse(localStorage.getItem("products")) || [];
+        if (confirm("❌ Are you sure you want to delete this product?")) {
+          products.splice(index, 1);
+          localStorage.setItem("products", JSON.stringify(products));
+          loadProducts();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

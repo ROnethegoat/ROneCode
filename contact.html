@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Glow by Astou</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="public/Logo.jpeg" type="image/x-icon">
+  <style>
+    :root {
+      --primary: #ffb7c5;
+      --primary-dark: #ff9fb4;
+      --secondary: #203239;
+      --accent: #2a3c48;
+      --light: #ffffff;
+      --text-light: #f8f9fa;
+      --text-muted: #e9ecef;
+      --gradient-primary: linear-gradient(135deg, #ff9fb4 0%, #ffb7c5 100%);
+      --gradient-dark: linear-gradient(135deg, #203239 0%, #2a3c48 100%);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      --shadow-light: 0 10px 30px rgba(255, 183, 197, 0.3);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--secondary);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Header (from other pages) */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(32, 50, 57, 0.98);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 183, 197, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .logo img {
+      border-radius: 50%;
+    }
+    
+    .nav-3d {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav-inner {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    
+    .nav-link {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .nav-link:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-primary);
+      transition: left 0.3s ease;
+      z-index: -1;
+    }
+    
+    .nav-link:hover:before,
+    .nav-link.active:before {
+      left: 0;
+    }
+    
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+    
+    /* Contact Page Specific Styles */
+    .contact-section {
+      padding: 6rem 0 4rem;
+      text-align: center;
+    }
+    
+    .contact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 5rem);
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .contact-intro {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+    
+    .contact-options {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-top: 4rem;
+    }
+    
+    .contact-card {
+      background: var(--accent);
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-light);
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .contact-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .contact-card p, .contact-card a {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    
+    .contact-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .contact-card a:hover {
+        color: var(--primary);
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .social-links a {
+        font-size: 2rem;
+        color: var(--text-light);
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .social-links a:hover {
+        transform: scale(1.1);
+        color: var(--primary);
+    }
+
+    .social-links .whatsapp:hover {
+        color: #25d366;
+    }
+
+    .social-links .instagram:hover {
+        color: #E1306C;
+    }
+
+    .social-links .facebook:hover {
+        color: #1877F2;
+    }
+
+    /* Contact Form Styles */
+    .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .contact-form h3 {
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: var(--primary);
+    }
+
+    .form-group input, .form-group textarea {
+        width: 100%;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 183, 197, 0.2);
+        border-radius: 8px;
+        color: var(--text-light);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .form-group input::placeholder, .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(255, 183, 197, 0.4);
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 150px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 1rem;
+        border: none;
+        border-radius: 50px;
+        background: var(--gradient-primary);
+        color: var(--secondary);
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(255, 183, 197, 0.4);
+    }
+
+    /* Footer (from other pages) */
+    footer {
+      background: var(--gradient-dark);
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(255, 183, 197, 0.2);
+      margin-top: 4rem;
+    }
+    
+    footer p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .hidden-dot {
+      color: rgba(255, 183, 197, 0.3);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.3s ease;
+    }
+    
+    .hidden-dot:hover {
+      color: var(--primary);
+    }
+
+    /* Responsive Design */
+    @media (min-width: 768px) {
+      .contact-options {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+      }
+      .contact-card {
+        flex: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 0 1rem;
+        }
+        .contact-title {
+            font-size: 3rem;
+        }
+        .contact-card {
+            padding: 2rem;
+        }
+        .contact-card h3 {
+            font-size: 1.5rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .contact-options {
+            gap: 1.5rem;
+        }
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;">
+      <div class="logo">
+        <img src="public/Logo.jpeg" width="50" height="50" alt="Glow By Astou Logo">
+      </div>
+      <nav class="nav-3d">
+        <div class="nav-inner" id="navInner">
+          <a class="nav-link" href="index.html">Accueil</a>
+          <a class="nav-link" href="shop.html">Shop</a>
+          <a class="nav-link active" href="contact.html">Contact</a>
+        </div>
+      </nav>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+    </nav>
+  </header>
+
+  <main class="contact-section">
+    <div class="container">
+      <h1 class="contact-title">Contactez-nous</h1>
+      <p class="contact-intro">
+        Nous sommes là pour répondre à toutes vos questions. N'hésitez pas à nous contacter par e-mail, WhatsApp ou sur les réseaux sociaux.
+      </p>
+
+      <div class="contact-options">
+        <div class="contact-card">
+          <h3>Contact Rapide</h3>
+          <p>Pour des questions urgentes ou des commandes spéciales, nous sommes disponibles sur WhatsApp.</p>
+          <a href="https://wa.me/221785700710?text=Bonjour,%20je%20souhaiterais%20en%20savoir%20plus%20sur%20vos%20produits." target="_blank" style="color: #25d366; font-weight: 700; margin-top: 1rem;">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            Envoyer un message WhatsApp
+          </a>
+        </div>
+
+        <div class="contact-card contact-form">
+          <h3>Envoyer un Message</h3>
+          <form action="mailto:your_email@example.com" method="POST" enctype="text/plain">
+            <div class="form-group">
+              <label for="name">Votre Nom</label>
+              <input type="text" id="name" name="name" placeholder="Astou Sene" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Votre Email</label>
+              <input type="email" id="email" name="email" placeholder="votre_email@exemple.com" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Votre Message</label>
+              <textarea id="message" name="message" placeholder="J'ai une question sur..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Envoyer</button>
+          </form>
+        </div>
+
+        <div class="contact-card">
+          <h3>Suivez-nous</h3>
+          <p>Rejoignez la communauté Glow by Astou et ne manquez rien de nos nouveautés et promotions.</p>
+          <div class="social-links">
+            <a href="https://wa.me/221703044669" target="_blank" class="whatsapp"><ion-icon name="logo-whatsapp"></ion-icon></a>
+            <a href="https://www.instagram.com/glowbyastou?utm_source=ig_web_button_share_sheet&igsh=MTN5dDI0YTB0MGI0aw==" target="_blank" class="instagram"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="#" target="_blank" class="facebook"><ion-icon name="logo-facebook"></ion-icon></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Glow by Astou | Tous droits réservés</p>
+    <a href="admin.html" class="hidden-dot">Admin</a>
+  </footer>
+
+  <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+  <script>
+    // Toggle mobile menu (copied from shop page)
+    function toggleMobileMenu() {
+      const navInner = document.getElementById('navInner');
+      navInner.classList.toggle('active');
+    }
+
+    // Close mobile menu on outside click
+    document.addEventListener('click', function(e) {
+      const navInner = document.getElementById('navInner');
+      const mobileBtn = document.querySelector('.mobile-menu-btn');
+      const nav = document.querySelector('.nav-3d');
+      
+      if (navInner.classList.contains('active') && !nav.contains(e.target) && !mobileBtn.contains(e.target)) {
+        navInner.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
