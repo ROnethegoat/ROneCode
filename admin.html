@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <header>
+        <h1>Product Admin Panel</h1>
+        <div id="auth-container">
+            <p>Welcome, <span id="user-email">Loading...</span></p>
+            <button id="logout-button">Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="add-product-section">
+            <h2 id="form-title">Add New Product</h2>
+            <form id="add-product-form">
+                
+                <input type="hidden" id="productId">
+
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" required>
+
+                <label for="productPrice">Price ($):</label>
+                <input type="number" id="productPrice" step="0.01" required>
+
+                <label for="productDescription">Description:</label>
+                <textarea id="productDescription" rows="4" required></textarea>
+
+                <label for="productImage">Product Image:</label>
+                <input type="file" id="productImage" accept="image/*">
+
+                <button type="submit" id="submit-button">Add Product</button>
+                
+                <button type="button" id="cancel-edit-button" style="display:none;">Cancel Edit</button>
+            </form>
+        </section>
+
+        <section id="manage-products-section">
+            <h2>Existing Products</h2>
+            <div id="products-list-container">
+                </div>
+        </section>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+    <script>
+        // IMPORTANT: Replace this with your actual Firebase project configuration
+       const firebaseConfig = {
+  apiKey: "AIzaSyBcDqGxQptfbod-X_VXA7O9otL1Kpc-3L4",
+  authDomain: "glow-by-astou.firebaseapp.com",
+  projectId: "glow-by-astou",
+  storageBucket: "glow-by-astou.firebasestorage.app",
+  messagingSenderId: "780704227130",
+  appId: "1:780704227130:web:d3cd65c38dab3b75807a03",
+  measurementId: "G-9WYTSGBG9W"
+};
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    
+    <script src="admin.js"></script>
+
+</body>
+</html>
