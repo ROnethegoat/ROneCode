@@ -1089,19 +1089,17 @@ footer p {
 
   <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
   <script>
-   // Global variables
+// Global variables
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let allProducts = [];
 let isCartOpen = false;
 let isProductModalOpen = false;
-const sheetyApiUrl = 'https://api.sheety.co/393921f47bce87bf40a0ce7550227d1f/feuilleDeCalculSansTitre/feuille1'; // Your Sheety API URL
 
-// Fetch products from the API and store them
+// Fetch products from the JSON file and store them
 async function fetchProductsAndStore() {
     try {
-        const response = await fetch(sheetyApiUrl);
-        const data = await response.json();
-        allProducts = data.products;
+        const response = await fetch('_data/products.json');
+        allProducts = await response.json();
         loadProducts(); // Display products after fetching
     } catch (error) {
         console.error('Erreur lors de la récupération des produits:', error);
