@@ -64,8 +64,8 @@ class EcommerceApp {
         reviews: 124,
         tags: ['soin', 'cils', 'beauté'],
         colors: [
-          { name: 'Transparent', code: '#F0F8FF', border: '#E5E5E5' },
-          { name: 'Rose', code: '#FFB6C1' }
+          { name: 'Transparent', code: '#F0F8FF', border: '#E5E5E5' }
+    
         ],
         images: ['img/Eyelash-serum.jpg', 'img/Eyelash-serum.jpg', 'img/Eyelash-serum.jpg']
       },
