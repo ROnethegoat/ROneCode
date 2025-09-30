@@ -51,316 +51,706 @@ class EcommerceApp {
     this.currentDetailQuantity = 1;
 
     this.sampleProducts = [
-      {
-        id: '1',
-        name: 'Sérum pour Cils',
-        category: 'Soins beauté',
-        price: 2000,
-        originalPrice: 2500,
-        image: 'img/Eyelash-serum.jpg',
-        description: 'Sérum pousse-cils rapide et efficace. Formule enrichie en vitamines pour des cils plus longs et plus fournis.',
-        stock: 50,
-        rating: 4.8,
-        reviews: 124,
-        tags: ['soin', 'cils', 'beauté'],
-        colors: [
-          { name: 'Transparent', code: '#F0F8FF', border: '#E5E5E5' }
-    
-        ],
-        images: ['img/Eyelash-serum.jpg', 'img/Eyelash-serum.jpg', 'img/Eyelash-serum.jpg']
-      },
-      {
-        id: '2',
-        name: 'Ensemble Blanc Élégant',
-        category: 'Vêtements',
-        price: 7000,
-        image: 'img/white-ensemble.jpg',
-        description: 'Ensemble blanc élégant (disponible aussi en plusieurs couleurs). Coupe moderne et confortable.',
-        stock: 15,
-        rating: 4.7,
-        reviews: 87,
-        tags: ['ensemble', 'mode', 'polyvalent'],
-        colors: [
-          { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
-          { name: 'Rose', code: '#FFB6C1' },
-          { name: 'Bleu', code: '#87CEEB' },
-          { name: 'Noir', code: '#2C2C2C' }
-        ],
-        images: ['img/white-ensemble.jpg', 'img/white-ensemble.jpg', 'img/white-ensemble.jpg']
-      },
-      {
-        id: '3',
-        name: 'Ensemble Rose',
-        category: 'Vêtements',
-        price: 6000,
-        originalPrice: 7500,
-        image: 'img/robe-rose.jpg',
-        description: 'Ensemble rose chic et tendance. Parfait pour toutes les occasions spéciales.',
-        stock: 10,
-        rating: 4.6,
-        reviews: 74,
-        tags: ['ensemble', 'rose', 'mode'],
-        colors: [
-          { name: 'Rose', code: '#FFB6C1' },
-          { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
-          { name: 'Vert', code: '#90EE90' }
-        ],
-        images: ['img/robe-rose.jpg', 'img/robe-rose.jpg', 'img/robe-rose.jpg']
-      },
-      {
-        id: '4',
-        name: 'Short Décontracté',
-        category: 'Vêtements',
-        price: 2500,
-        image: 'img/short2.jpg',
-        description: 'Short confortable pour un look casual. Matière légère et respirante.',
-        stock: 20,
-        rating: 4.5,
-        reviews: 65,
-        tags: ['short', 'été', 'casual'],
-        colors: [
-          { name: 'Beige', code: '#F5F5DC' },
-          { name: 'Bleu', code: '#87CEEB' },
-          { name: 'Vert', code: '#90EE90' }
-        ],
-        images: ['img/short2.jpg', 'img/short2.jpg', 'img/short2.jpg']
-      },
-      {
-        id: '5',
-        name: 'Short à Carreaux',
-        category: 'Vêtements',
-        price: 2500,
-        image: 'img/short-careau.jpg',
-        description: 'Short à carreaux tendance et stylé. Coupe moderne et ajustée.',
-        stock: 18,
-        rating: 4.6,
-        reviews: 72,
-        tags: ['short', 'carreaux', 'mode'],
-        colors: [
-          { name: 'Multicolore', code: '#DDD', border: '#999' },
-          { name: 'Bleu', code: '#87CEEB' },
-          { name: 'Rouge', code: '#FFB6B6' }
-        ],
-        images: ['img/short-careau.jpg', 'img/short-careau.jpg', 'img/short-careau.jpg']
-      },
-      {
-        id: '6',
-        name: 'Nue-Pieds Hermes',
-        category: 'Chaussures',
-        price: 7000,
-        originalPrice: 8500,
-        image: 'img/nue-pied.jpg',
-        description: 'Chaussures Hermes confortables et tendance. Cuir véritable et finitions de qualité.',
-        stock: 12,
-        rating: 4.7,
-        reviews: 91,
-        tags: ['chaussures', 'hermes', 'été'],
-        colors: [
-          { name: 'Marron', code: '#8B4513' },
-          { name: 'Noir', code: '#2C2C2C' },
-          { name: 'Beige', code: '#F5F5DC' }
-        ],
-        images: ['img/nue-pied.jpg', 'img/nue-pied.jpg', 'img/nue-pied.jpg']
-      },
-      {
-        id: '7',
-        name: 'Chaussures à Crochet',
-        category: 'Chaussures',
-        price: 4000,
-        image: 'img/nue-pied2.jpg',
-        description: 'Chaussures avec crochet, légères et pratiques. Design unique et confortable.',
-        stock: 14,
-        rating: 4.5,
-        reviews: 68,
-        tags: ['chaussures', 'crochet', 'confort'],
-        colors: [
-          { name: 'Beige', code: '#F5F5DC' },
-          { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
-          { name: 'Noir', code: '#2C2C2C' }
-        ],
-        images: ['img/nue-pied2.jpg', 'img/nue-pied2.jpg', 'img/nue-pied2.jpg']
-      },
-      {
-        id: '8',
-        name: 'Cargo',
-        category: 'Vêtements',
-        price: 7000,
-        image: 'img/jean-baggy.jpg',
-        description: 'Pantalon cargo stylé pour un look streetwear. Nombreuses poches pratiques.',
-        stock: 10,
-        rating: 4.6,
-        reviews: 56,
-        tags: ['cargo', 'streetwear', 'mode'],
-        colors: [
-          { name: 'Kaki', code: '#BDB76B' },
-          { name: 'Noir', code: '#2C2C2C' },
-          { name: 'Vert olive', code: '#808000' }
-        ],
-        images: ['img/jean-baggy.jpg', 'img/jean-baggy.jpg', 'img/jean-baggy.jpg']
-      },
-      {
-        id: '9',
-        name: 'Bas Large Vert',
-        category: 'Vêtements',
-        price: 4000,
-        image: 'img/green-bl.jpg',
-        description: 'Bas large vert tendance. Coupe fluide et confortable.',
-        stock: 15,
-        rating: 4.7,
-        reviews: 59,
-        tags: ['lin', 'bas large', 'été'],
-        colors: [
-          { name: 'Vert', code: '#90EE90' },
-          { name: 'Beige', code: '#F5F5DC' },
-          { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' }
-        ],
-        images: ['img/green-bl.jpg', 'img/green-bl.jpg', 'img/green-bl.jpg']
-      },
-      {
-        id: '10',
-        name: 'Bas Large en Lin',
-        category: 'Vêtements',
-        price: 3500,
-        image: 'img/bl.jpg',
-        description: 'Pantalon bas large en lin, léger et confortable. Parfait pour l\'été.',
-        stock: 12,
-        rating: 4.6,
-        reviews: 48,
-        tags: ['vert', 'bas large', 'mode'],
-        colors: [
-          { name: 'Lin naturel', code: '#F5F5DC' },
-          { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
-          { name: 'Beige', code: '#DEB887' }
-        ],
-        images: ['img/bl.jpg', 'img/bl.jpg', 'img/bl.jpg']
-      },
-      {
-        id: '11',
-        name: 'Boyfriend Jeans',
-        category: 'Vêtements',
-        price: 7000,
-        image: 'img/jean1.jpg',
-        description: 'Jean boyfriend coupe ample, look moderne. Denim de qualité premium.',
-        stock: 9,
-        rating: 4.5,
-        reviews: 51,
-        tags: ['jean', 'boyfriend', 'mode'],
-        colors: [
-          { name: 'Bleu denim', code: '#4682B4' },
-          { name: 'Noir', code: '#2C2C2C' },
-          { name: 'Bleu clair', code: '#87CEEB' }
-        ],
-        images: ['img/jean1.jpg', 'img/jean1.jpg', 'img/jean1.jpg']
-      },
-      {
-        id: '12',
-        name: 'Jupe',
-        category: 'Vêtements',
-        price: 3600,
-        image: 'img/robe-rose.jpg',
-        description: 'Jupe tendance pour un style chic. Coupe flatteuse et élégante.',
-        stock: 14,
-        rating: 4.6,
-        reviews: 62,
-        tags: ['jupe', 'féminin', 'mode'],
-        colors: [
-          { name: 'Rose', code: '#FFB6C1' },
-          { name: 'Noir', code: '#2C2C2C' },
-          { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' }
-        ],
-        images: ['img/robe-rose.jpg', 'img/robe-rose.jpg', 'img/robe-rose.jpg']
-      },
-      {
-        id: '13',
-        name: 'Jalaba Traditionnelle',
-        category: 'Vêtements',
-        price: 7000,
-        image: 'img/jalaba.jpg',
-        description: 'Jalaba élégante inspirée de la tradition. Broderies raffinées et tissu de qualité.',
-        stock: 6,
-        rating: 4.7,
-        reviews: 55,
-        tags: ['jalaba', 'tradition', 'élégant'],
-        colors: [
-          { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
-          { name: 'Beige', code: '#F5F5DC' },
-          { name: 'Or', code: '#FFD700' }
-        ],
-        images: ['img/jalaba.jpg', 'img/jalaba.jpg', 'img/jalaba.jpg']
-      },
-      {
-        id: '14',
-        name: 'Jalaba Style 2',
-        category: 'Vêtements',
-        price: 7000,
-        image: 'img/jalaba2.jpg',
-        description: 'Deuxième modèle de jalaba, raffiné et tendance. Design moderne avec touches traditionnelles.',
-        stock: 7,
-        rating: 4.6,
-        reviews: 48,
-        tags: ['jalaba', 'raffiné', 'mode'],
-        colors: [
-          { name: 'Bleu', code: '#87CEEB' },
-          { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
-          { name: 'Vert', code: '#90EE90' }
-        ],
-        images: ['img/jalaba2.jpg', 'img/jalaba2.jpg', 'img/jalaba2.jpg']
-      },
-      {
-        id: '15',
-        name: 'Pantalon Taille Hanche',
-        category: 'Vêtements',
-        price: 4500,
-        image: 'img/hanche1.jpg',
-        description: 'Pantalon taille basse moderne. Coupe ajustée et tendance.',
-        stock: 10,
-        rating: 4.5,
-        reviews: 47,
-        tags: ['pantalon', 'hanche', 'mode'],
-        colors: [
-          { name: 'Noir', code: '#2C2C2C' },
-          { name: 'Beige', code: '#F5F5DC' },
-          { name: 'Bleu', code: '#87CEEB' }
-        ],
-        images: ['img/hanche1.jpg', 'img/hanche1.jpg', 'img/hanche1.jpg']
-      },
-      {
-        id: '16',
-        name: 'Pantalon Taille Hanche 2',
-        category: 'Vêtements',
-        price: 4500,
-        image: 'img/hanche2.jpg',
-        description: 'Deuxième modèle de pantalon taille basse. Style moderne et confortable.',
-        stock: 12,
-        rating: 4.6,
-        reviews: 51,
-        tags: ['pantalon', 'hanche', 'stylé'],
-        colors: [
-          { name: 'Marron', code: '#8B4513' },
-          { name: 'Noir', code: '#2C2C2C' },
-          { name: 'Beige', code: '#F5F5DC' }
-        ],
-        images: ['img/hanche2.jpg', 'img/hanche2.jpg', 'img/hanche2.jpg']
-      },
-      {
-        id: '17',
-        name: 'Abaya',
-        category: 'Vêtements',
-        price: 4500,
-        image: 'img/abaya.jpg',
-        description: 'Abaya élégante et moderne. Coupe fluide et confortable pour un style raffiné.',
-        stock: 10,
-        rating: 4.5,
-        reviews: 47,
-        tags: ['abaya', 'élégant', 'mode'],
-        colors: [
-          { name: 'Noir', code: '#2C2C2C' },
-          { name: 'Beige', code: '#F5F5DC' },
-          { name: 'Gris', code: '#808080' }
-        ],
-        images: ['img/abaya.jpg', 'img/abaya.jpg', 'img/abaya.jpg']
-      }
-    ];
+       {
+    id: '0',
+    name: 'Sérum pour ongle',
+    category: 'Soins beauté',
+    price: 2000,
+    originalPrice: 2500,
+    image: 'img/nails.jpg',
+    description: 'Sérum pousse-ongle rapide et efficace. Formule enrichie en vitamines pour des ongle plus longs et plus fournis.',
+    stock: 50,
+    rating: 4.8,
+    reviews: 124,
+    tags: ['soin', 'cils', 'beauté'],
+    colors: [
+      { name: 'Transparent', code: '#F0F8FF', border: '#E5E5E5' }
+    ],
+    images: ['img/nails.jpg']
+  },
+  {
+    id: '1',
+    name: 'Sérum pour Cils',
+    category: 'Soins beauté',
+    price: 2000,
+    originalPrice: 2500,
+    image: 'img/Eyelash-serum.jpg',
+    description: 'Sérum pousse-cils rapide et efficace. Formule enrichie en vitamines pour des cils plus longs et plus fournis.',
+    stock: 50,
+    rating: 4.8,
+    reviews: 124,
+    tags: ['soin', 'cils', 'beauté'],
+    colors: [
+      { name: 'Transparent', code: '#F0F8FF', border: '#E5E5E5' }
+    ],
+    images: ['img/Eyelash-serum.jpg']
+  },
+  {
+    id: '2',
+    name: 'Ensemble Blanc Élégant',
+    category: 'Vêtements',
+    price: 7000,
+    image: 'img/white-ensemble.jpg',
+    description: 'Ensemble blanc élégant (disponible aussi en plusieurs couleurs). Coupe moderne et confortable.',
+    stock: 15,
+    rating: 4.7,
+    reviews: 87,
+    tags: ['ensemble', 'mode', 'polyvalent'],
+    colors: [
+      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
+      { name: 'Rose', code: '#FFB6C1' },
+      { name: 'Bleu', code: '#87CEEB' },
+      { name: 'Noir', code: '#2C2C2C' }
+    ],
+    images: ['img/white-ensemble.jpg', 'img/white-ensemble.jpg', 'img/white-ensemble.jpg']
+  },
+  {
+    id: '35',
+    name: 'Chemise + Cravate',
+    category: 'Vêtements',
+    price: 2500,
+    image: 'img/chemise-cravate.jpg',
+    description: 'Polo classique en coton. Confortable et élégant.',
+    stock: 20,
+    rating: 4.5,
+    reviews: 40,
+    tags: ['polo', 'classique'],
+    colors: [
+      { name: 'Blanc', code: '#FFFFFF' },
+      { name: 'Noir', code: '#2C2C2C' }
+    ],
+    images: ['img/chemise-cravate.jpg']
+  },
+  {
+    id: '3',
+    name: 'Ensemble Rose',
+    category: 'Vêtements',
+    price: 6000,
+    originalPrice: 7500,
+    image: 'img/robe-rose.jpg',
+    description: 'Ensemble rose chic et tendance. Parfait pour toutes les occasions spéciales.',
+    stock: 10,
+    rating: 4.6,
+    reviews: 74,
+    tags: ['ensemble', 'rose', 'mode'],
+    colors: [
+      { name: 'Rose', code: '#FFB6C1' },
+      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
+      { name: 'Vert', code: '#90EE90' }
+    ],
+    images: ['img/robe-rose.jpg', 'img/robe-rose.jpg', 'img/robe-rose.jpg']
+  },
+  {
+    id: '4',
+    name: 'Short Décontracté',
+    category: 'Vêtements',
+    price: 2500,
+    image: 'img/short2.jpg',
+    description: 'Short confortable pour un look casual. Matière légère et respirante.',
+    stock: 20,
+    rating: 4.5,
+    reviews: 65,
+    tags: ['short', 'été', 'casual'],
+    colors: [
+      { name: 'Beige', code: '#F5F5DC' },
+      { name: 'Bleu', code: '#87CEEB' },
+      { name: 'Vert', code: '#90EE90' }
+    ],
+    images: ['img/short2.jpg', 'img/short2.jpg', 'img/short2.jpg']
+  },
+  {
+    id: '5',
+    name: 'Short à Carreaux',
+    category: 'Vêtements',
+    price: 2500,
+    image: 'img/short-careau.jpg',
+    description: 'Short à carreaux tendance et stylé. Coupe moderne et ajustée.',
+    stock: 18,
+    rating: 4.6,
+    reviews: 72,
+    tags: ['short', 'carreaux', 'mode'],
+    colors: [
+      { name: 'Multicolore', code: '#DDD', border: '#999' },
+      { name: 'Bleu', code: '#87CEEB' },
+      { name: 'Rouge', code: '#FFB6B6' }
+    ],
+    images: ['img/short-careau.jpg', 'img/short-careau.jpg', 'img/short-careau.jpg']
+  },
+  {
+    id: '6',
+    name: 'Nue-Pieds Hermes',
+    category: 'Chaussures',
+    price: 7000,
+    originalPrice: 8500,
+    image: 'img/nue-pied.jpg',
+    description: 'Chaussures Hermes confortables et tendance. Cuir véritable et finitions de qualité.',
+    stock: 12,
+    rating: 4.7,
+    reviews: 91,
+    tags: ['chaussures', 'hermes', 'été'],
+    colors: [
+      { name: 'Marron', code: '#8B4513' },
+      { name: 'Noir', code: '#2C2C2C' },
+      { name: 'Beige', code: '#F5F5DC' }
+    ],
+    images: ['img/nue-pied.jpg', 'img/nue-pied.jpg', 'img/nue-pied.jpg']
+  },
+  {
+    id: '7',
+    name: 'Chaussures à Crochet',
+    category: 'Chaussures',
+    price: 4000,
+    image: 'img/nue-pied2.jpg',
+    description: 'Chaussures avec crochet, légères et pratiques. Design unique et confortable.',
+    stock: 14,
+    rating: 4.5,
+    reviews: 68,
+    tags: ['chaussures', 'crochet', 'confort'],
+    colors: [
+      { name: 'Beige', code: '#F5F5DC' },
+      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
+      { name: 'Noir', code: '#2C2C2C' }
+    ],
+    images: ['img/nue-pied2.jpg', 'img/nue-pied2.jpg', 'img/nue-pied2.jpg']
+  },
+  {
+    id: '8',
+    name: 'Cargo',
+    category: 'Vêtements',
+    price: 7000,
+    image: 'img/jean-baggy.jpg',
+    description: 'Pantalon cargo stylé pour un look streetwear. Nombreuses poches pratiques.',
+    stock: 10,
+    rating: 4.6,
+    reviews: 56,
+    tags: ['cargo', 'streetwear', 'mode'],
+    colors: [
+      { name: 'Kaki', code: '#BDB76B' },
+      { name: 'Noir', code: '#2C2C2C' },
+      { name: 'Vert olive', code: '#808000' }
+    ],
+    images: ['img/jean-baggy.jpg', 'img/jean-baggy.jpg', 'img/jean-baggy.jpg']
+  },
+  {
+    id: '9',
+    name: 'Bas Large Vert',
+    category: 'Vêtements',
+    price: 4000,
+    image: 'img/green-bl.jpg',
+    description: 'Bas large vert tendance. Coupe fluide et confortable.',
+    stock: 15,
+    rating: 4.7,
+    reviews: 59,
+    tags: ['lin', 'bas large', 'été'],
+    colors: [
+      { name: 'Vert', code: '#90EE90' },
+      { name: 'Beige', code: '#F5F5DC' },
+      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' }
+    ],
+    images: ['img/green-bl.jpg', 'img/green-bl.jpg', 'img/green-bl.jpg']
+  },
+  {
+    id: '10',
+    name: 'Bas Large en Lin',
+    category: 'Vêtements',
+    price: 3500,
+    image: 'img/bl.jpg',
+    description: 'Pantalon bas large en lin, léger et confortable. Parfait pour l\'été.',
+    stock: 12,
+    rating: 4.6,
+    reviews: 48,
+    tags: ['vert', 'bas large', 'mode'],
+    colors: [
+      { name: 'Lin naturel', code: '#F5F5DC' },
+      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
+      { name: 'Beige', code: '#DEB887' }
+    ],
+    images: ['img/bl.jpg', 'img/bl.jpg', 'img/bl.jpg']
+  },
+  {
+    id: '11',
+    name: 'Boyfriend Jeans',
+    category: 'Vêtements',
+    price: 7000,
+    image: 'img/jean1.jpg',
+    description: 'Jean boyfriend coupe ample, look moderne. Denim de qualité premium.',
+    stock: 9,
+    rating: 4.5,
+    reviews: 51,
+    tags: ['jean', 'boyfriend', 'mode'],
+    colors: [
+      { name: 'Bleu denim', code: '#4682B4' },
+      { name: 'Noir', code: '#2C2C2C' },
+      { name: 'Bleu clair', code: '#87CEEB' }
+    ],
+    images: ['img/jean1.jpg', 'img/jean1.jpg', 'img/jean1.jpg']
+  },
+  {
+    id: '12',
+    name: 'Jupe',
+    category: 'Vêtements',
+    price: 3600,
+    image: 'img/jupe.jpg',
+    description: 'Jupe tendance pour un style chic. Coupe flatteuse et élégante.',
+    stock: 14,
+    rating: 4.6,
+    reviews: 62,
+    tags: ['jupe', 'féminin', 'mode'],
+    colors: [
+      { name: 'Rose', code: '#FFB6C1' },
+      { name: 'Noir', code: '#2C2C2C' },
+      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' }
+    ],
+    images: ['img/jupe.jpg', 'img/jupe.jpg', 'img/jupe.jpg']
+  },
+  {
+    id: '13',
+    name: 'Jalaba Traditionnelle',
+    category: 'Vêtements',
+    price: 7000,
+    image: 'img/jalaba.jpg',
+    description: 'Jalaba élégante inspirée de la tradition. Broderies raffinées et tissu de qualité.',
+    stock: 6,
+    rating: 4.7,
+    reviews: 55,
+    tags: ['jalaba', 'tradition', 'élégant'],
+    colors: [
+      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
+      { name: 'Beige', code: '#F5F5DC' },
+      { name: 'Or', code: '#FFD700' }
+    ],
+    images: ['img/jalaba.jpg', 'img/jalaba.jpg', 'img/jalaba.jpg']
+  },
+  {
+    id: '14',
+    name: 'Jalaba Style 2',
+    category: 'Vêtements',
+    price: 7000,
+    image: 'img/jalaba2.jpg',
+    description: 'Deuxième modèle de jalaba, raffiné et tendance. Design moderne avec touches traditionnelles.',
+    stock: 7,
+    rating: 4.6,
+    reviews: 48,
+    tags: ['jalaba', 'raffiné', 'mode'],
+    colors: [
+      { name: 'Bleu', code: '#87CEEB' },
+      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
+      { name: 'Vert', code: '#90EE90' }
+    ],
+    images: ['img/jalaba2.jpg', 'img/jalaba2.jpg', 'img/jalaba2.jpg']
+  },
+  {
+    id: '15',
+    name: 'Pantalon Taille Hanche',
+    category: 'Vêtements',
+    price: 4500,
+    image: 'img/hanche1.jpg',
+    description: 'Pantalon taille basse moderne. Coupe ajustée et tendance.',
+    stock: 10,
+    rating: 4.5,
+    reviews: 47,
+    tags: ['pantalon', 'hanche', 'mode'],
+    colors: [
+      { name: 'Noir', code: '#2C2C2C' },
+      { name: 'Beige', code: '#F5F5DC' },
+      { name: 'Bleu', code: '#87CEEB' }
+    ],
+    images: ['img/hanche1.jpg', 'img/hanche1.jpg', 'img/hanche1.jpg']
+  },
+  {
+    id: '16',
+    name: 'Pantalon Taille Hanche 2',
+    category: 'Vêtements',
+    price: 4500,
+    image: 'img/hanche2.jpg',
+    description: 'Deuxième modèle de pantalon taille basse. Style moderne et confortable.',
+    stock: 12,
+    rating: 4.6,
+    reviews: 51,
+    tags: ['pantalon', 'hanche', 'stylé'],
+    colors: [
+      { name: 'Marron', code: '#8B4513' },
+      { name: 'Noir', code: '#2C2C2C' },
+      { name: 'Beige', code: '#F5F5DC' }
+    ],
+    images: ['img/hanche2.jpg', 'img/hanche2.jpg', 'img/hanche2.jpg']
+  },
+  {
+    id: '17',
+    name: 'Abaya',
+    category: 'Vêtements',
+    price: 4500,
+    image: 'img/abaya.jpg',
+    description: 'Abaya élégante et moderne. Coupe fluide et confortable pour un style raffiné.',
+    stock: 10,
+    rating: 4.5,
+    reviews: 47,
+    tags: ['abaya', 'élégant', 'mode'],
+    colors: [
+      { name: 'Noir', code: '#2C2C2C' },
+      { name: 'Beige', code: '#F5F5DC' },
+      { name: 'Gris', code: '#808080' }
+    ],
+    images: ['img/abaya.jpg', 'img/abaya.jpg', 'img/abaya.jpg']
+  },
+  {
+    id: '18',
+    name: 'Collant',
+    category: 'Vêtements',
+    price: 2000,
+    image: 'img/collant.jpg',
+    description: 'Collant tendance et confortable. Idéal pour compléter vos tenues.',
+    stock: 25,
+    rating: 4.4,
+    reviews: 38,
+    tags: ['collant', 'mode', 'accessoire'],
+    colors: [
+      { name: 'Noir', code: '#2C2C2C' },
+      { name: 'Beige', code: '#F5F5DC' }
+    ],
+    images: ['img/collant.jpg', 'img/collant.jpg', 'img/collant.jpg']
+  },
+  {
+    id: '19',
+    name: 'Ensemble Classique',
+    category: 'Vêtements',
+    price: 6500,
+    image: 'img/ensembleclass.jpg',
+    description: 'Ensemble classique pour toutes les occasions. Style simple et chic.',
+    stock: 8,
+    rating: 4.6,
+    reviews: 42,
+    tags: ['ensemble', 'classique', 'mode'],
+    colors: [
+      { name: 'Noir', code: '#2C2C2C' },
+      { name: 'Blanc', code: '#FFFFFF' }
+    ],
+    images: ['img/ensembleclass.jpg', 'img/ensembleclass.jpg', 'img/ensembleclass.jpg']
+  },
+  {
+    id: '20',
+    name: 'Ensemble Rouge',
+    category: 'Vêtements',
+    price: 6000,
+    image: 'img/ensembleRouge.jpg',
+    description: 'Ensemble rouge élégant et vibrant. Parfait pour un style affirmé.',
+    stock: 7,
+    rating: 4.7,
+    reviews: 40,
+    tags: ['ensemble', 'rouge', 'mode'],
+    colors: [
+      { name: 'Rouge', code: '#FF0000' },
+      { name: 'Noir', code: '#2C2C2C' }
+    ],
+    images: ['img/ensembleRouge.jpg', 'img/ensembleRouge.jpg', 'img/ensembleRouge.jpg']
+  },
+  {
+    id: '21',
+    name: 'Ensemble Moderne',
+    category: 'Vêtements',
+    price: 6000,
+    image: 'img/ensenble.jpg',
+    description: 'Ensemble moderne et confortable. Convient à toutes les occasions.',
+    stock: 9,
+    rating: 4.5,
+    reviews: 33,
+    tags: ['ensemble', 'mode'],
+    colors: [
+      { name: 'Gris', code: '#808080' },
+      { name: 'Noir', code: '#2C2C2C' }
+    ],
+    images: ['img/ensenble.jpg', 'img/ensenble.jpg', 'img/ensenble.jpg']
+  },
+  {
+    id: '22',
+    name: 'Guén',
+    category: 'Vêtements',
+    price: 5000,
+    image: 'img/guen.jpg',
+    description: 'Guén traditionnel revisité pour un style moderne et raffiné.',
+    stock: 6,
+    rating: 4.6,
+    reviews: 29,
+    tags: ['tradition', 'mode'],
+    colors: [
+      { name: 'Beige', code: '#F5F5DC' },
+      { name: 'Noir', code: '#2C2C2C' }
+    ],
+    images: ['img/guen.jpg', 'img/guen.jpg', 'img/guen.jpg']
+  },
+  {
+    id: '23',
+    name: 'Jean Class',
+    category: 'Vêtements',
+    price: 5000,
+    image: 'img/jean.jpg',
+    description: 'Jean classique coupe droite. Indispensable de la garde-robe.',
+    stock: 15,
+    rating: 4.5,
+    reviews: 41,
+    tags: ['jean', 'classique'],
+    colors: [
+      { name: 'Bleu denim', code: '#4682B4' }
+    ],
+    images: ['img/jean.jpg', 'img/jean.jpg', 'img/jean.jpg']
+  },
+  {
+    id: '24',
+    name: 'Jean Slim',
+    category: 'Vêtements',
+    price: 5000,
+    image: 'img/jean2.jpg',
+    description: 'Jean slim ajusté pour un look moderne et élégant.',
+    stock: 12,
+    rating: 4.6,
+    reviews: 39,
+    tags: ['jean', 'slim'],
+    colors: [
+      { name: 'Bleu clair', code: '#87CEEB' },
+      { name: 'Noir', code: '#2C2C2C' }
+    ],
+    images: ['img/jean2.jpg', 'img/jean2.jpg', 'img/jean2.jpg']
+  },
+  {
+    id: '25',
+    name: 'Jean Décontracté',
+    category: 'Vêtements',
+    price: 4800,
+    image: 'img/jean3.jpg',
+    description: 'Jean décontracté, parfait pour un style casual.',
+    stock: 10,
+    rating: 4.4,
+    reviews: 28,
+    tags: ['jean', 'casual'],
+    colors: [
+      { name: 'Bleu denim', code: '#4682B4' }
+    ],
+    images: ['img/jean3.jpg', 'img/jean3.jpg', 'img/jean3.jpg']
+  },
+  {
+    id: '26',
+    name: 'Jogging Confort',
+    category: 'Vêtements',
+    price: 4000,
+    image: 'img/joggin.jpg',
+    description: 'Jogging confortable et pratique pour le sport ou la détente.',
+    stock: 18,
+    rating: 4.6,
+    reviews: 44,
+    tags: ['jogging', 'confort', 'sport'],
+    colors: [
+      { name: 'Gris', code: '#808080' },
+      { name: 'Noir', code: '#2C2C2C' }
+    ],
+    images: ['img/joggin.jpg', 'img/joggin.jpg', 'img/joggin.jpg']
+  },
+  {
+    id: '27',
+    name: 'Robe à Rayures',
+    category: 'Vêtements',
+    price: 6000,
+    image: 'img/robearayure.jpg',
+    description: 'Robe à rayures élégante et moderne. Coupe flatteuse.',
+    stock: 8,
+    rating: 4.5,
+    reviews: 32,
+    tags: ['robe', 'rayures', 'mode'],
+    colors: [
+      { name: 'Multicolore', code: '#DDD', border: '#999' }
+    ],
+    images: ['img/robearayure.jpg', 'img/robearayure.jpg', 'img/robearayure.jpg']
+  },
+  {
+    id: '28',
+    name: 'Robe à Rayures 2',
+    category: 'Vêtements',
+    price: 6000,
+    image: 'img/robearayure2.jpg',
+    description: 'Deuxième modèle de robe à rayures. Élégance assurée.',
+    stock: 7,
+    rating: 4.6,
+    reviews: 30,
+    tags: ['robe', 'rayures', 'mode'],
+    colors: [
+      { name: 'Multicolore', code: '#DDD', border: '#999' }
+    ],
+    images: ['img/robearayure2.jpg', 'img/robearayure2.jpg', 'img/robearayure2.jpg']
+  },
+  {
+    id: '29',
+    name: 'Robe Courte',
+    category: 'Vêtements',
+    price: 6000,
+    image: 'img/robeCourte.jpg',
+    description: 'Robe courte chic et moderne. Parfaite pour l’été.',
+    stock: 11,
+    rating: 4.7,
+    reviews: 37,
+    tags: ['robe', 'courte', 'été'],
+    colors: [
+      { name: 'Rouge', code: '#FF0000' },
+      { name: 'Noir', code: '#2C2C2C' }
+    ],
+    images: ['img/robeCourte.jpg', 'img/robeCourte.jpg', 'img/robeCourte.jpg']
+  },
+  {
+    id: '30',
+    name: 'Robe Rose Élégante',
+    category: 'Vêtements',
+    price: 6000,
+    image: 'img/robeRose.jpg',
+    description: 'Robe rose élégante avec une coupe fluide et raffinée.',
+    stock: 9,
+    rating: 4.6,
+    reviews: 35,
+    tags: ['robe', 'rose', 'mode'],
+    colors: [
+      { name: 'Rose', code: '#FFB6C1' },
+      { name: 'Blanc', code: '#FFFFFF' }
+    ],
+    images: ['img/robeRose.jpg', 'img/robeRose.jpg', 'img/robeRose.jpg']
+  },
+  {
+    id: '31',
+    name: 'Robe Rose Style 2',
+    category: 'Vêtements',
+    price: 6000,
+    image: 'img/robeRose2.jpg',
+    description: 'Deuxième modèle de robe rose. Style élégant et moderne.',
+    stock: 8,
+    rating: 4.5,
+    reviews: 29,
+    tags: ['robe', 'rose', 'mode'],
+    colors: [
+      { name: 'Rose', code: '#FFB6C1' }
+    ],
+    images: ['img/robeRose2.jpg', 'img/robeRose2.jpg', 'img/robeRose2.jpg']
+  },
+  {
+    id: '32',
+    name: 'Madona',
+    category: 'Vêtements',
+    price: 1500,
+    image: 'img/madona.jpg',
+    description: 'Robe Madona élégante et raffinée. Coupe moderne et chic.',
+    stock: 6,
+    rating: 4.7,
+    reviews: 28,
+    tags: ['robe', 'madona', 'mode'],
+    colors: [
+      { name: 'Rouge', code: '#FF0000' },
+      { name: 'Noir', code: '#2C2C2C' }
+    ],
+    images: ['img/madona.jpg', 'img/madona.jpg', 'img/madona.jpg']
+  },
+  {
+    id: '33',
+    name: 'Madona Style 2',
+    category: 'Vêtements',
+    price: 2000,
+    image: 'img/madona2.jpg',
+    description: 'Deuxième modèle Madona. Élégant et tendance.',
+    stock: 5,
+    rating: 4.6,
+    reviews: 25,
+    tags: ['robe', 'madona', 'mode'],
+    colors: [
+      { name: 'Noir', code: '#2C2C2C' },
+      { name: 'Or', code: '#FFD700' }
+    ],
+    images: ['img/madona2.jpg', 'img/madona2.jpg', 'img/madona2.jpg']
+  },
+  {
+    id: '34',
+    name: 'Polo Classique',
+    category: 'Vêtements',
+    price: 3500,
+    image: 'img/polo.jpg',
+    description: 'Polo classique en coton. Confortable et élégant.',
+    stock: 20,
+    rating: 4.5,
+    reviews: 40,
+    tags: ['polo', 'classique'],
+    colors: [
+      { name: 'Blanc', code: '#FFFFFF' },
+      { name: 'Noir', code: '#2C2C2C' }
+    ],
+    images: ['img/polo.jpg', 'img/polo.jpg', 'img/polo.jpg']
+  },
+  {
+    id: '36',
+    name: 'Ensemble jogging + body',
+    category: 'Vêtements',
+    price: 5000,
+    image: 'img/ensemble1 .jpg',
+    description: 'Ensemble en coton. Confortable et élégant.',
+    stock: 20,
+    rating: 4.5,
+    reviews: 40,
+    tags: ['polo', 'classique'],
+    colors: [
+      { name: 'Blanc', code: '#FFFFFF' },
+      { name: 'Noir', code: '#2C2C2C' },
+      { name: 'rouge', code: '#ff0000ff' }
+    ],
+    images: ['img/ensemble1 .jpg','img/ensemble1 .jpg','img/ensemble1 .jpg']
+  },
+  {
+    id: '37',
+    name: 'Robe class',
+    category: 'Vêtements',
+    price: 6000,
+    image: 'img/robe.jpg',
+    description: 'Confortable et élégant.',
+    stock: 20,
+    rating: 4.5,
+    reviews: 40,
+    tags: ['polo', 'classique'],
+    colors: [
+      { name: 'Blanc', code: '#FFFFFF' },
+      { name: 'Noir', code: '#2C2C2C' },
+      { name: 'vert', code: '#05ad38ff' }
+    ],
+    images: ['img/robe.jpg','img/robe.jpg','img/robe.jpg']
+  },
+  {
+     id: '38',
+    name: 'Robe Bleu class',
+    category: 'Vêtements',
+    price: 5000,
+    image: 'img/robe-bleu.jpeg',
+    description: 'Confortable et élégant.',
+    stock: 20,
+    rating: 4.5,
+    reviews: 40,
+    tags: ['polo', 'classique'],
+    colors: [
+      { name: 'Blanc', code: '#FFFFFF' },
+      { name: 'Noir', code: '#2C2C2C' },
+      { name: 'vert', code: '#05ad38ff' }
+    ],
+    images: ['img/robe-bleu.jpeg','img/robe-bleu.jpeg','img/robe-bleu.jpeg']
+  },
+  {
+     id: '39',
+    name: 'Robe Bleu class',
+    category: 'Vêtements',
+    price: 5000,
+    image: 'img/white_ensemble.jpg',
+    description: 'Confortable et élégant.',
+    stock: 20,
+    rating: 4.5,
+    reviews: 40,
+    tags: ['polo', 'classique'],
+    colors: [
+      { name: 'Blanc', code: '#FFFFFF' }
+      
+    ],
+    images: ['img/white_ensemble.jpg','img/white_ensemble.jpg','img/white_ensemble.jpg']
+  }
+
+];
+
 
     this.init();
   }
