@@ -8,42 +8,42 @@ class EcommerceApp {
     this.state = {
       products: [],
       filteredProducts: [],
-      cart: this.loadFromStorage('cart', []),
-      wishlist: this.loadFromStorage('wishlist', []),
+      cart: this.loadFromStorage("cart", []),
+      wishlist: this.loadFromStorage("wishlist", []),
       filters: {
-        search: '',
-        category: '',
-        priceRange: '',
-        sortBy: 'name'
+        search: "",
+        category: "",
+        priceRange: "",
+        sortBy: "name",
       },
       ui: {
         cartOpen: false,
-        loading: false
-      }
+        loading: false,
+      },
     };
 
     this.config = {
-      whatsappNumber: '221703044669',
-      currency: 'CFA',
+      whatsappNumber: "221703044669",
+      currency: "CFA",
       storageKeys: {
-        cart: 'glow_cart',
-        wishlist: 'glow_wishlist'
-      }
+        cart: "glow_cart",
+        wishlist: "glow_wishlist",
+      },
     };
 
     this.selectors = {
-      productGrid: '#productGrid',
-      searchInput: '#searchInput',
-      categoryFilter: '#categoryFilter',
-      priceFilter: '#priceFilter',
-      sortFilter: '#sortFilter',
-      cartBtn: '#cartBtn',
-      wishBtn: '#wishBtn',
-      cartModal: '#cartModal',
-      cartItems: '#cartItems',
-      cartCount: '#cartCount',
-      wishCount: '#wishCount',
-      toast: '#toast'
+      productGrid: "#productGrid",
+      searchInput: "#searchInput",
+      categoryFilter: "#categoryFilter",
+      priceFilter: "#priceFilter",
+      sortFilter: "#sortFilter",
+      cartBtn: "#cartBtn",
+      wishBtn: "#wishBtn",
+      cartModal: "#cartModal",
+      cartItems: "#cartItems",
+      cartCount: "#cartCount",
+      wishCount: "#wishCount",
+      toast: "#toast",
     };
 
     // Current product details state
@@ -51,706 +51,755 @@ class EcommerceApp {
     this.currentDetailQuantity = 1;
 
     this.sampleProducts = [
-       {
-    id: '0',
-    name: 'Sérum pour ongle',
-    category: 'Soins beauté',
-    price: 2000,
-    originalPrice: 2500,
-    image: 'img/nails.jpg',
-    description: 'Sérum pousse-ongle rapide et efficace. Formule enrichie en vitamines pour des ongle plus longs et plus fournis.',
-    stock: 50,
-    rating: 4.8,
-    reviews: 124,
-    tags: ['soin', 'cils', 'beauté'],
-    colors: [
-      { name: 'Transparent', code: '#F0F8FF', border: '#E5E5E5' }
-    ],
-    images: ['img/nails.jpg']
-  },
-  {
-    id: '1',
-    name: 'Sérum pour Cils',
-    category: 'Soins beauté',
-    price: 2000,
-    originalPrice: 2500,
-    image: 'img/Eyelash-serum.jpg',
-    description: 'Sérum pousse-cils rapide et efficace. Formule enrichie en vitamines pour des cils plus longs et plus fournis.',
-    stock: 50,
-    rating: 4.8,
-    reviews: 124,
-    tags: ['soin', 'cils', 'beauté'],
-    colors: [
-      { name: 'Transparent', code: '#F0F8FF', border: '#E5E5E5' }
-    ],
-    images: ['img/Eyelash-serum.jpg']
-  },
-  {
-    id: '2',
-    name: 'Ensemble Blanc Élégant',
-    category: 'Vêtements',
-    price: 7000,
-    image: 'img/white-ensemble.jpg',
-    description: 'Ensemble blanc élégant (disponible aussi en plusieurs couleurs). Coupe moderne et confortable.',
-    stock: 15,
-    rating: 4.7,
-    reviews: 87,
-    tags: ['ensemble', 'mode', 'polyvalent'],
-    colors: [
-      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
-      { name: 'Rose', code: '#FFB6C1' },
-      { name: 'Bleu', code: '#87CEEB' },
-      { name: 'Noir', code: '#2C2C2C' }
-    ],
-    images: ['img/white-ensemble.jpg', 'img/white-ensemble.jpg', 'img/white-ensemble.jpg']
-  },
-  {
-    id: '35',
-    name: 'Chemise + Cravate',
-    category: 'Vêtements',
-    price: 2500,
-    image: 'img/chemise-cravate.jpg',
-    description: 'Polo classique en coton. Confortable et élégant.',
-    stock: 20,
-    rating: 4.5,
-    reviews: 40,
-    tags: ['polo', 'classique'],
-    colors: [
-      { name: 'Blanc', code: '#FFFFFF' },
-      { name: 'Noir', code: '#2C2C2C' }
-    ],
-    images: ['img/chemise-cravate.jpg']
-  },
-  {
-    id: '3',
-    name: 'Ensemble Rose',
-    category: 'Vêtements',
-    price: 6000,
-    originalPrice: 7500,
-    image: 'img/robe-rose.jpg',
-    description: 'Ensemble rose chic et tendance. Parfait pour toutes les occasions spéciales.',
-    stock: 10,
-    rating: 4.6,
-    reviews: 74,
-    tags: ['ensemble', 'rose', 'mode'],
-    colors: [
-      { name: 'Rose', code: '#FFB6C1' },
-      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
-      { name: 'Vert', code: '#90EE90' }
-    ],
-    images: ['img/robe-rose.jpg', 'img/robe-rose.jpg', 'img/robe-rose.jpg']
-  },
-  {
-    id: '4',
-    name: 'Short Décontracté',
-    category: 'Vêtements',
-    price: 2500,
-    image: 'img/short2.jpg',
-    description: 'Short confortable pour un look casual. Matière légère et respirante.',
-    stock: 20,
-    rating: 4.5,
-    reviews: 65,
-    tags: ['short', 'été', 'casual'],
-    colors: [
-      { name: 'Beige', code: '#F5F5DC' },
-      { name: 'Bleu', code: '#87CEEB' },
-      { name: 'Vert', code: '#90EE90' }
-    ],
-    images: ['img/short2.jpg', 'img/short2.jpg', 'img/short2.jpg']
-  },
-  {
-    id: '5',
-    name: 'Short à Carreaux',
-    category: 'Vêtements',
-    price: 2500,
-    image: 'img/short-careau.jpg',
-    description: 'Short à carreaux tendance et stylé. Coupe moderne et ajustée.',
-    stock: 18,
-    rating: 4.6,
-    reviews: 72,
-    tags: ['short', 'carreaux', 'mode'],
-    colors: [
-      { name: 'Multicolore', code: '#DDD', border: '#999' },
-      { name: 'Bleu', code: '#87CEEB' },
-      { name: 'Rouge', code: '#FFB6B6' }
-    ],
-    images: ['img/short-careau.jpg', 'img/short-careau.jpg', 'img/short-careau.jpg']
-  },
-  {
-    id: '6',
-    name: 'Nue-Pieds Hermes',
-    category: 'Chaussures',
-    price: 7000,
-    originalPrice: 8500,
-    image: 'img/nue-pied.jpg',
-    description: 'Chaussures Hermes confortables et tendance. Cuir véritable et finitions de qualité.',
-    stock: 12,
-    rating: 4.7,
-    reviews: 91,
-    tags: ['chaussures', 'hermes', 'été'],
-    colors: [
-      { name: 'Marron', code: '#8B4513' },
-      { name: 'Noir', code: '#2C2C2C' },
-      { name: 'Beige', code: '#F5F5DC' }
-    ],
-    images: ['img/nue-pied.jpg', 'img/nue-pied.jpg', 'img/nue-pied.jpg']
-  },
-  {
-    id: '7',
-    name: 'Chaussures à Crochet',
-    category: 'Chaussures',
-    price: 4000,
-    image: 'img/nue-pied2.jpg',
-    description: 'Chaussures avec crochet, légères et pratiques. Design unique et confortable.',
-    stock: 14,
-    rating: 4.5,
-    reviews: 68,
-    tags: ['chaussures', 'crochet', 'confort'],
-    colors: [
-      { name: 'Beige', code: '#F5F5DC' },
-      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
-      { name: 'Noir', code: '#2C2C2C' }
-    ],
-    images: ['img/nue-pied2.jpg', 'img/nue-pied2.jpg', 'img/nue-pied2.jpg']
-  },
-  {
-    id: '8',
-    name: 'Cargo',
-    category: 'Vêtements',
-    price: 7000,
-    image: 'img/jean-baggy.jpg',
-    description: 'Pantalon cargo stylé pour un look streetwear. Nombreuses poches pratiques.',
-    stock: 10,
-    rating: 4.6,
-    reviews: 56,
-    tags: ['cargo', 'streetwear', 'mode'],
-    colors: [
-      { name: 'Kaki', code: '#BDB76B' },
-      { name: 'Noir', code: '#2C2C2C' },
-      { name: 'Vert olive', code: '#808000' }
-    ],
-    images: ['img/jean-baggy.jpg', 'img/jean-baggy.jpg', 'img/jean-baggy.jpg']
-  },
-  {
-    id: '9',
-    name: 'Bas Large Vert',
-    category: 'Vêtements',
-    price: 4000,
-    image: 'img/green-bl.jpg',
-    description: 'Bas large vert tendance. Coupe fluide et confortable.',
-    stock: 15,
-    rating: 4.7,
-    reviews: 59,
-    tags: ['lin', 'bas large', 'été'],
-    colors: [
-      { name: 'Vert', code: '#90EE90' },
-      { name: 'Beige', code: '#F5F5DC' },
-      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' }
-    ],
-    images: ['img/green-bl.jpg', 'img/green-bl.jpg', 'img/green-bl.jpg']
-  },
-  {
-    id: '10',
-    name: 'Bas Large en Lin',
-    category: 'Vêtements',
-    price: 3500,
-    image: 'img/bl.jpg',
-    description: 'Pantalon bas large en lin, léger et confortable. Parfait pour l\'été.',
-    stock: 12,
-    rating: 4.6,
-    reviews: 48,
-    tags: ['vert', 'bas large', 'mode'],
-    colors: [
-      { name: 'Lin naturel', code: '#F5F5DC' },
-      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
-      { name: 'Beige', code: '#DEB887' }
-    ],
-    images: ['img/bl.jpg', 'img/bl.jpg', 'img/bl.jpg']
-  },
-  {
-    id: '11',
-    name: 'Boyfriend Jeans',
-    category: 'Vêtements',
-    price: 7000,
-    image: 'img/jean1.jpg',
-    description: 'Jean boyfriend coupe ample, look moderne. Denim de qualité premium.',
-    stock: 9,
-    rating: 4.5,
-    reviews: 51,
-    tags: ['jean', 'boyfriend', 'mode'],
-    colors: [
-      { name: 'Bleu denim', code: '#4682B4' },
-      { name: 'Noir', code: '#2C2C2C' },
-      { name: 'Bleu clair', code: '#87CEEB' }
-    ],
-    images: ['img/jean1.jpg', 'img/jean1.jpg', 'img/jean1.jpg']
-  },
-  {
-    id: '12',
-    name: 'Jupe',
-    category: 'Vêtements',
-    price: 3600,
-    image: 'img/jupe.jpg',
-    description: 'Jupe tendance pour un style chic. Coupe flatteuse et élégante.',
-    stock: 14,
-    rating: 4.6,
-    reviews: 62,
-    tags: ['jupe', 'féminin', 'mode'],
-    colors: [
-      { name: 'Rose', code: '#FFB6C1' },
-      { name: 'Noir', code: '#2C2C2C' },
-      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' }
-    ],
-    images: ['img/jupe.jpg', 'img/jupe.jpg', 'img/jupe.jpg']
-  },
-  {
-    id: '13',
-    name: 'Jalaba Traditionnelle',
-    category: 'Vêtements',
-    price: 7000,
-    image: 'img/jalaba.jpg',
-    description: 'Jalaba élégante inspirée de la tradition. Broderies raffinées et tissu de qualité.',
-    stock: 6,
-    rating: 4.7,
-    reviews: 55,
-    tags: ['jalaba', 'tradition', 'élégant'],
-    colors: [
-      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
-      { name: 'Beige', code: '#F5F5DC' },
-      { name: 'Or', code: '#FFD700' }
-    ],
-    images: ['img/jalaba.jpg', 'img/jalaba.jpg', 'img/jalaba.jpg']
-  },
-  {
-    id: '14',
-    name: 'Jalaba Style 2',
-    category: 'Vêtements',
-    price: 7000,
-    image: 'img/jalaba2.jpg',
-    description: 'Deuxième modèle de jalaba, raffiné et tendance. Design moderne avec touches traditionnelles.',
-    stock: 7,
-    rating: 4.6,
-    reviews: 48,
-    tags: ['jalaba', 'raffiné', 'mode'],
-    colors: [
-      { name: 'Bleu', code: '#87CEEB' },
-      { name: 'Blanc', code: '#FFFFFF', border: '#E5E5E5' },
-      { name: 'Vert', code: '#90EE90' }
-    ],
-    images: ['img/jalaba2.jpg', 'img/jalaba2.jpg', 'img/jalaba2.jpg']
-  },
-  {
-    id: '15',
-    name: 'Pantalon Taille Hanche',
-    category: 'Vêtements',
-    price: 4500,
-    image: 'img/hanche1.jpg',
-    description: 'Pantalon taille basse moderne. Coupe ajustée et tendance.',
-    stock: 10,
-    rating: 4.5,
-    reviews: 47,
-    tags: ['pantalon', 'hanche', 'mode'],
-    colors: [
-      { name: 'Noir', code: '#2C2C2C' },
-      { name: 'Beige', code: '#F5F5DC' },
-      { name: 'Bleu', code: '#87CEEB' }
-    ],
-    images: ['img/hanche1.jpg', 'img/hanche1.jpg', 'img/hanche1.jpg']
-  },
-  {
-    id: '16',
-    name: 'Pantalon Taille Hanche 2',
-    category: 'Vêtements',
-    price: 4500,
-    image: 'img/hanche2.jpg',
-    description: 'Deuxième modèle de pantalon taille basse. Style moderne et confortable.',
-    stock: 12,
-    rating: 4.6,
-    reviews: 51,
-    tags: ['pantalon', 'hanche', 'stylé'],
-    colors: [
-      { name: 'Marron', code: '#8B4513' },
-      { name: 'Noir', code: '#2C2C2C' },
-      { name: 'Beige', code: '#F5F5DC' }
-    ],
-    images: ['img/hanche2.jpg', 'img/hanche2.jpg', 'img/hanche2.jpg']
-  },
-  {
-    id: '17',
-    name: 'Abaya',
-    category: 'Vêtements',
-    price: 4500,
-    image: 'img/abaya.jpg',
-    description: 'Abaya élégante et moderne. Coupe fluide et confortable pour un style raffiné.',
-    stock: 10,
-    rating: 4.5,
-    reviews: 47,
-    tags: ['abaya', 'élégant', 'mode'],
-    colors: [
-      { name: 'Noir', code: '#2C2C2C' },
-      { name: 'Beige', code: '#F5F5DC' },
-      { name: 'Gris', code: '#808080' }
-    ],
-    images: ['img/abaya.jpg', 'img/abaya.jpg', 'img/abaya.jpg']
-  },
-  {
-    id: '18',
-    name: 'Collant',
-    category: 'Vêtements',
-    price: 2000,
-    image: 'img/collant.jpg',
-    description: 'Collant tendance et confortable. Idéal pour compléter vos tenues.',
-    stock: 25,
-    rating: 4.4,
-    reviews: 38,
-    tags: ['collant', 'mode', 'accessoire'],
-    colors: [
-      { name: 'Noir', code: '#2C2C2C' },
-      { name: 'Beige', code: '#F5F5DC' }
-    ],
-    images: ['img/collant.jpg', 'img/collant.jpg', 'img/collant.jpg']
-  },
-  {
-    id: '19',
-    name: 'Ensemble Classique',
-    category: 'Vêtements',
-    price: 6500,
-    image: 'img/ensembleclass.jpg',
-    description: 'Ensemble classique pour toutes les occasions. Style simple et chic.',
-    stock: 8,
-    rating: 4.6,
-    reviews: 42,
-    tags: ['ensemble', 'classique', 'mode'],
-    colors: [
-      { name: 'Noir', code: '#2C2C2C' },
-      { name: 'Blanc', code: '#FFFFFF' }
-    ],
-    images: ['img/ensembleclass.jpg', 'img/ensembleclass.jpg', 'img/ensembleclass.jpg']
-  },
-  {
-    id: '20',
-    name: 'Ensemble Rouge',
-    category: 'Vêtements',
-    price: 6000,
-    image: 'img/ensembleRouge.jpg',
-    description: 'Ensemble rouge élégant et vibrant. Parfait pour un style affirmé.',
-    stock: 7,
-    rating: 4.7,
-    reviews: 40,
-    tags: ['ensemble', 'rouge', 'mode'],
-    colors: [
-      { name: 'Rouge', code: '#FF0000' },
-      { name: 'Noir', code: '#2C2C2C' }
-    ],
-    images: ['img/ensembleRouge.jpg', 'img/ensembleRouge.jpg', 'img/ensembleRouge.jpg']
-  },
-  {
-    id: '21',
-    name: 'Ensemble Moderne',
-    category: 'Vêtements',
-    price: 6000,
-    image: 'img/ensenble.jpg',
-    description: 'Ensemble moderne et confortable. Convient à toutes les occasions.',
-    stock: 9,
-    rating: 4.5,
-    reviews: 33,
-    tags: ['ensemble', 'mode'],
-    colors: [
-      { name: 'Gris', code: '#808080' },
-      { name: 'Noir', code: '#2C2C2C' }
-    ],
-    images: ['img/ensenble.jpg', 'img/ensenble.jpg', 'img/ensenble.jpg']
-  },
-  {
-    id: '22',
-    name: 'Guén',
-    category: 'Vêtements',
-    price: 5000,
-    image: 'img/guen.jpg',
-    description: 'Guén traditionnel revisité pour un style moderne et raffiné.',
-    stock: 6,
-    rating: 4.6,
-    reviews: 29,
-    tags: ['tradition', 'mode'],
-    colors: [
-      { name: 'Beige', code: '#F5F5DC' },
-      { name: 'Noir', code: '#2C2C2C' }
-    ],
-    images: ['img/guen.jpg', 'img/guen.jpg', 'img/guen.jpg']
-  },
-  {
-    id: '23',
-    name: 'Jean Class',
-    category: 'Vêtements',
-    price: 5000,
-    image: 'img/jean.jpg',
-    description: 'Jean classique coupe droite. Indispensable de la garde-robe.',
-    stock: 15,
-    rating: 4.5,
-    reviews: 41,
-    tags: ['jean', 'classique'],
-    colors: [
-      { name: 'Bleu denim', code: '#4682B4' }
-    ],
-    images: ['img/jean.jpg', 'img/jean.jpg', 'img/jean.jpg']
-  },
-  {
-    id: '24',
-    name: 'Jean Slim',
-    category: 'Vêtements',
-    price: 5000,
-    image: 'img/jean2.jpg',
-    description: 'Jean slim ajusté pour un look moderne et élégant.',
-    stock: 12,
-    rating: 4.6,
-    reviews: 39,
-    tags: ['jean', 'slim'],
-    colors: [
-      { name: 'Bleu clair', code: '#87CEEB' },
-      { name: 'Noir', code: '#2C2C2C' }
-    ],
-    images: ['img/jean2.jpg', 'img/jean2.jpg', 'img/jean2.jpg']
-  },
-  {
-    id: '25',
-    name: 'Jean Décontracté',
-    category: 'Vêtements',
-    price: 4800,
-    image: 'img/jean3.jpg',
-    description: 'Jean décontracté, parfait pour un style casual.',
-    stock: 10,
-    rating: 4.4,
-    reviews: 28,
-    tags: ['jean', 'casual'],
-    colors: [
-      { name: 'Bleu denim', code: '#4682B4' }
-    ],
-    images: ['img/jean3.jpg', 'img/jean3.jpg', 'img/jean3.jpg']
-  },
-  {
-    id: '26',
-    name: 'Jogging Confort',
-    category: 'Vêtements',
-    price: 4000,
-    image: 'img/joggin.jpg',
-    description: 'Jogging confortable et pratique pour le sport ou la détente.',
-    stock: 18,
-    rating: 4.6,
-    reviews: 44,
-    tags: ['jogging', 'confort', 'sport'],
-    colors: [
-      { name: 'Gris', code: '#808080' },
-      { name: 'Noir', code: '#2C2C2C' }
-    ],
-    images: ['img/joggin.jpg', 'img/joggin.jpg', 'img/joggin.jpg']
-  },
-  {
-    id: '27',
-    name: 'Robe à Rayures',
-    category: 'Vêtements',
-    price: 6000,
-    image: 'img/robearayure.jpg',
-    description: 'Robe à rayures élégante et moderne. Coupe flatteuse.',
-    stock: 8,
-    rating: 4.5,
-    reviews: 32,
-    tags: ['robe', 'rayures', 'mode'],
-    colors: [
-      { name: 'Multicolore', code: '#DDD', border: '#999' }
-    ],
-    images: ['img/robearayure.jpg', 'img/robearayure.jpg', 'img/robearayure.jpg']
-  },
-  {
-    id: '28',
-    name: 'Robe à Rayures 2',
-    category: 'Vêtements',
-    price: 6000,
-    image: 'img/robearayure2.jpg',
-    description: 'Deuxième modèle de robe à rayures. Élégance assurée.',
-    stock: 7,
-    rating: 4.6,
-    reviews: 30,
-    tags: ['robe', 'rayures', 'mode'],
-    colors: [
-      { name: 'Multicolore', code: '#DDD', border: '#999' }
-    ],
-    images: ['img/robearayure2.jpg', 'img/robearayure2.jpg', 'img/robearayure2.jpg']
-  },
-  {
-    id: '29',
-    name: 'Robe Courte',
-    category: 'Vêtements',
-    price: 6000,
-    image: 'img/robeCourte.jpg',
-    description: 'Robe courte chic et moderne. Parfaite pour l’été.',
-    stock: 11,
-    rating: 4.7,
-    reviews: 37,
-    tags: ['robe', 'courte', 'été'],
-    colors: [
-      { name: 'Rouge', code: '#FF0000' },
-      { name: 'Noir', code: '#2C2C2C' }
-    ],
-    images: ['img/robeCourte.jpg', 'img/robeCourte.jpg', 'img/robeCourte.jpg']
-  },
-  {
-    id: '30',
-    name: 'Robe Rose Élégante',
-    category: 'Vêtements',
-    price: 6000,
-    image: 'img/robeRose.jpg',
-    description: 'Robe rose élégante avec une coupe fluide et raffinée.',
-    stock: 9,
-    rating: 4.6,
-    reviews: 35,
-    tags: ['robe', 'rose', 'mode'],
-    colors: [
-      { name: 'Rose', code: '#FFB6C1' },
-      { name: 'Blanc', code: '#FFFFFF' }
-    ],
-    images: ['img/robeRose.jpg', 'img/robeRose.jpg', 'img/robeRose.jpg']
-  },
-  {
-    id: '31',
-    name: 'Robe Rose Style 2',
-    category: 'Vêtements',
-    price: 6000,
-    image: 'img/robeRose2.jpg',
-    description: 'Deuxième modèle de robe rose. Style élégant et moderne.',
-    stock: 8,
-    rating: 4.5,
-    reviews: 29,
-    tags: ['robe', 'rose', 'mode'],
-    colors: [
-      { name: 'Rose', code: '#FFB6C1' }
-    ],
-    images: ['img/robeRose2.jpg', 'img/robeRose2.jpg', 'img/robeRose2.jpg']
-  },
-  {
-    id: '32',
-    name: 'Madona',
-    category: 'Vêtements',
-    price: 1500,
-    image: 'img/madona.jpg',
-    description: 'Robe Madona élégante et raffinée. Coupe moderne et chic.',
-    stock: 6,
-    rating: 4.7,
-    reviews: 28,
-    tags: ['robe', 'madona', 'mode'],
-    colors: [
-      { name: 'Rouge', code: '#FF0000' },
-      { name: 'Noir', code: '#2C2C2C' }
-    ],
-    images: ['img/madona.jpg', 'img/madona.jpg', 'img/madona.jpg']
-  },
-  {
-    id: '33',
-    name: 'Madona Style 2',
-    category: 'Vêtements',
-    price: 2000,
-    image: 'img/madona2.jpg',
-    description: 'Deuxième modèle Madona. Élégant et tendance.',
-    stock: 5,
-    rating: 4.6,
-    reviews: 25,
-    tags: ['robe', 'madona', 'mode'],
-    colors: [
-      { name: 'Noir', code: '#2C2C2C' },
-      { name: 'Or', code: '#FFD700' }
-    ],
-    images: ['img/madona2.jpg', 'img/madona2.jpg', 'img/madona2.jpg']
-  },
-  {
-    id: '34',
-    name: 'Polo Classique',
-    category: 'Vêtements',
-    price: 3500,
-    image: 'img/polo.jpg',
-    description: 'Polo classique en coton. Confortable et élégant.',
-    stock: 20,
-    rating: 4.5,
-    reviews: 40,
-    tags: ['polo', 'classique'],
-    colors: [
-      { name: 'Blanc', code: '#FFFFFF' },
-      { name: 'Noir', code: '#2C2C2C' }
-    ],
-    images: ['img/polo.jpg', 'img/polo.jpg', 'img/polo.jpg']
-  },
-  {
-    id: '36',
-    name: 'Ensemble jogging + body',
-    category: 'Vêtements',
-    price: 5000,
-    image: 'img/ensemble1 .jpg',
-    description: 'Ensemble en coton. Confortable et élégant.',
-    stock: 20,
-    rating: 4.5,
-    reviews: 40,
-    tags: ['polo', 'classique'],
-    colors: [
-      { name: 'Blanc', code: '#FFFFFF' },
-      { name: 'Noir', code: '#2C2C2C' },
-      { name: 'rouge', code: '#ff0000ff' }
-    ],
-    images: ['img/ensemble1 .jpg','img/ensemble1 .jpg','img/ensemble1 .jpg']
-  },
-  {
-    id: '37',
-    name: 'Robe class',
-    category: 'Vêtements',
-    price: 6000,
-    image: 'img/robe.jpg',
-    description: 'Confortable et élégant.',
-    stock: 20,
-    rating: 4.5,
-    reviews: 40,
-    tags: ['polo', 'classique'],
-    colors: [
-      { name: 'Blanc', code: '#FFFFFF' },
-      { name: 'Noir', code: '#2C2C2C' },
-      { name: 'vert', code: '#05ad38ff' }
-    ],
-    images: ['img/robe.jpg','img/robe.jpg','img/robe.jpg']
-  },
-  {
-     id: '38',
-    name: 'Robe Bleu class',
-    category: 'Vêtements',
-    price: 5000,
-    image: 'img/robe-bleu.jpeg',
-    description: 'Confortable et élégant.',
-    stock: 20,
-    rating: 4.5,
-    reviews: 40,
-    tags: ['polo', 'classique'],
-    colors: [
-      { name: 'Blanc', code: '#FFFFFF' },
-      { name: 'Noir', code: '#2C2C2C' },
-      { name: 'vert', code: '#05ad38ff' }
-    ],
-    images: ['img/robe-bleu.jpeg','img/robe-bleu.jpeg','img/robe-bleu.jpeg']
-  },
-  {
-     id: '39',
-    name: 'Robe Bleu class',
-    category: 'Vêtements',
-    price: 5000,
-    image: 'img/white_ensemble.jpg',
-    description: 'Confortable et élégant.',
-    stock: 20,
-    rating: 4.5,
-    reviews: 40,
-    tags: ['polo', 'classique'],
-    colors: [
-      { name: 'Blanc', code: '#FFFFFF' }
-      
-    ],
-    images: ['img/white_ensemble.jpg','img/white_ensemble.jpg','img/white_ensemble.jpg']
-  }
-
-];
-
+      {
+        id: "0",
+        name: "Sérum pour ongle",
+        category: "Soins beauté",
+        price: 1500,
+        originalPrice: 2500,
+        image: "img/nails.jpg",
+        description:
+          "Sérum pousse-ongle rapide et efficace. Formule enrichie en vitamines pour des ongle plus longs et plus fournis.",
+        stock: 50,
+        rating: 4.8,
+        reviews: 124,
+        tags: ["soin", "cils", "beauté"],
+        colors: [{ name: "Transparent", code: "#F0F8FF", border: "#E5E5E5" }],
+        images: ["img/nails.jpg"],
+      },
+      {
+        id: "1",
+        name: "Sérum pour Cils",
+        category: "Soins beauté",
+        price: 2000,
+        originalPrice: 2500,
+        image: "img/Eyelash-serum.jpg",
+        description:
+          "Sérum pousse-cils rapide et efficace. Formule enrichie en vitamines pour des cils plus longs et plus fournis.",
+        stock: 50,
+        rating: 4.8,
+        reviews: 124,
+        tags: ["soin", "cils", "beauté"],
+        colors: [{ name: "Transparent", code: "#F0F8FF", border: "#E5E5E5" }],
+        images: ["img/Eyelash-serum.jpg"],
+      },
+      {
+        id: "2",
+        name: "Ensemble Blanc Élégant",
+        category: "Vêtements",
+        price: 5000,
+        image: "img/white-ensemble.jpg",
+        description:
+          "Ensemble blanc élégant (disponible aussi en plusieurs couleurs). Coupe moderne et confortable.",
+        stock: 15,
+        rating: 4.7,
+        reviews: 87,
+        tags: ["ensemble", "mode", "polyvalent"],
+        colors: [
+          { name: "Blanc", code: "#FFFFFF", border: "#E5E5E5" },
+          { name: "Rose", code: "#FFB6C1" },
+          { name: "Bleu", code: "#87CEEB" },
+          { name: "Noir", code: "#2C2C2C" },
+        ],
+        images: [
+          "img/white-ensemble.jpg",
+          "img/white-ensemble.jpg",
+          "img/white-ensemble.jpg",
+        ],
+      },
+      {
+        id: "35",
+        name: "Chemise + Cravate",
+        category: "Vêtements",
+        price: 2000,
+        image: "img/chemise-cravate.jpg",
+        description: "Polo classique en coton. Confortable et élégant.",
+        stock: 20,
+        rating: 4.5,
+        reviews: 40,
+        tags: ["polo", "classique"],
+        colors: [
+          { name: "Blanc", code: "#FFFFFF" },
+          { name: "Noir", code: "#2C2C2C" },
+        ],
+        images: ["img/chemise-cravate.jpg"],
+      },
+      {
+        id: "3",
+        name: "Ensemble Rose",
+        category: "Vêtements",
+        price: 7000,
+        originalPrice: 7500,
+        image: "img/robe-rose.jpg",
+        description:
+          "Ensemble rose chic et tendance. Parfait pour toutes les occasions spéciales.",
+        stock: 10,
+        rating: 4.6,
+        reviews: 74,
+        tags: ["ensemble", "rose", "mode"],
+        colors: [
+          { name: "Rose", code: "#FFB6C1" },
+          { name: "Blanc", code: "#FFFFFF", border: "#E5E5E5" },
+          { name: "Vert", code: "#90EE90" },
+        ],
+        images: ["img/robe-rose.jpg", "img/robe-rose.jpg", "img/robe-rose.jpg"],
+      },
+      {
+        id: "4",
+        name: "Short Décontracté",
+        category: "Vêtements",
+        price: 2500,
+        image: "img/short2.jpg",
+        description:
+          "Short confortable pour un look casual. Matière légère et respirante.",
+        stock: 20,
+        rating: 4.5,
+        reviews: 65,
+        tags: ["short", "été", "casual"],
+        colors: [
+          { name: "Beige", code: "#F5F5DC" },
+          { name: "Bleu", code: "#87CEEB" },
+          { name: "Vert", code: "#90EE90" },
+        ],
+        images: ["img/short2.jpg", "img/short2.jpg", "img/short2.jpg"],
+      },
+      {
+        id: "5",
+        name: "Short à Carreaux",
+        category: "Vêtements",
+        price: 2500,
+        image: "img/short-careau.jpg",
+        description:
+          "Short à carreaux tendance et stylé. Coupe moderne et ajustée.",
+        stock: 18,
+        rating: 4.6,
+        reviews: 72,
+        tags: ["short", "carreaux", "mode"],
+        colors: [
+          { name: "Multicolore", code: "#DDD", border: "#999" },
+          { name: "Bleu", code: "#87CEEB" },
+          { name: "Rouge", code: "#FFB6B6" },
+        ],
+        images: [
+          "img/short-careau.jpg",
+          "img/short-careau.jpg",
+          "img/short-careau.jpg",
+        ],
+      },
+      {
+        id: "6",
+        name: "Nue-Pieds Hermes",
+        category: "Chaussures",
+        price: 4000,
+        originalPrice: 8500,
+        image: "img/nue-pied.jpg",
+        description:
+          "Chaussures Hermes confortables et tendance. Cuir véritable et finitions de qualité.",
+        stock: 12,
+        rating: 4.7,
+        reviews: 91,
+        tags: ["chaussures", "hermes", "été"],
+        colors: [
+          { name: "Marron", code: "#8B4513" },
+          { name: "Noir", code: "#2C2C2C" },
+          { name: "Beige", code: "#F5F5DC" },
+        ],
+        images: ["img/nue-pied.jpg", "img/nue-pied.jpg", "img/nue-pied.jpg"],
+      },
+      {
+        id: "7",
+        name: "Chaussures à Crochet",
+        category: "Chaussures",
+        price: 4000,
+        image: "img/nue-pied2.jpg",
+        description:
+          "Chaussures avec crochet, légères et pratiques. Design unique et confortable.",
+        stock: 14,
+        rating: 4.5,
+        reviews: 68,
+        tags: ["chaussures", "crochet", "confort"],
+        colors: [
+          { name: "Beige", code: "#F5F5DC" },
+          { name: "Blanc", code: "#FFFFFF", border: "#E5E5E5" },
+          { name: "Noir", code: "#2C2C2C" },
+        ],
+        images: ["img/nue-pied2.jpg", "img/nue-pied2.jpg", "img/nue-pied2.jpg"],
+      },
+      {
+        id: "8",
+        name: "Cargo",
+        category: "Vêtements",
+        price: 7000,
+        image: "img/jean-baggy.jpg",
+        description:
+          "Pantalon cargo stylé pour un look streetwear. Nombreuses poches pratiques.",
+        stock: 10,
+        rating: 4.6,
+        reviews: 56,
+        tags: ["cargo", "streetwear", "mode"],
+        colors: [
+          { name: "Kaki", code: "#BDB76B" },
+          { name: "Noir", code: "#2C2C2C" },
+          { name: "Vert olive", code: "#808000" },
+        ],
+        images: [
+          "img/jean-baggy.jpg",
+          "img/jean-baggy.jpg",
+          "img/jean-baggy.jpg",
+        ],
+      },
+      {
+        id: "9",
+        name: "Bas Large Vert",
+        category: "Vêtements",
+        price: 7000,
+        image: "img/green-bl.jpg",
+        description: "Bas large vert tendance. Coupe fluide et confortable.",
+        stock: 15,
+        rating: 4.7,
+        reviews: 59,
+        tags: ["lin", "bas large", "été"],
+        colors: [
+          { name: "Vert", code: "#90EE90" },
+          { name: "Beige", code: "#F5F5DC" },
+          { name: "Blanc", code: "#FFFFFF", border: "#E5E5E5" },
+        ],
+        images: ["img/green-bl.jpg", "img/green-bl.jpg", "img/green-bl.jpg"],
+      },
+      {
+        id: "10",
+        name: "Bas Large en Lin",
+        category: "Vêtements",
+        price: 7000,
+        image: "img/bl.jpg",
+        description:
+          "Pantalon bas large en lin, léger et confortable. Parfait pour l'été.",
+        stock: 12,
+        rating: 4.6,
+        reviews: 48,
+        tags: ["vert", "bas large", "mode"],
+        colors: [
+          { name: "Lin naturel", code: "#F5F5DC" },
+          { name: "Blanc", code: "#FFFFFF", border: "#E5E5E5" },
+          { name: "Beige", code: "#DEB887" },
+        ],
+        images: ["img/bl.jpg", "img/bl.jpg", "img/bl.jpg"],
+      },
+      {
+        id: "11",
+        name: "Boyfriend Jeans",
+        category: "Vêtements",
+        price: 7000,
+        image: "img/jean1.jpg",
+        description:
+          "Jean boyfriend coupe ample, look moderne. Denim de qualité premium.",
+        stock: 9,
+        rating: 4.5,
+        reviews: 51,
+        tags: ["jean", "boyfriend", "mode"],
+        colors: [
+          { name: "Bleu denim", code: "#4682B4" },
+          { name: "Noir", code: "#2C2C2C" },
+          { name: "Bleu clair", code: "#87CEEB" },
+        ],
+        images: ["img/jean1.jpg", "img/jean1.jpg", "img/jean1.jpg"],
+      },
+      {
+        id: "12",
+        name: "Jupe",
+        category: "Vêtements",
+        price: 3500,
+        image: "img/jupe.jpg",
+        description:
+          "Jupe tendance pour un style chic. Coupe flatteuse et élégante.",
+        stock: 14,
+        rating: 4.6,
+        reviews: 62,
+        tags: ["jupe", "féminin", "mode"],
+        colors: [
+          { name: "Rose", code: "#FFB6C1" },
+          { name: "Noir", code: "#2C2C2C" },
+          { name: "Blanc", code: "#FFFFFF", border: "#E5E5E5" },
+        ],
+        images: ["img/jupe.jpg", "img/jupe.jpg", "img/jupe.jpg"],
+      },
+      {
+        id: "13",
+        name: "Jalaba Traditionnelle",
+        category: "Vêtements",
+        price: 7000,
+        image: "img/jalaba.jpg",
+        description:
+          "Jalaba élégante inspirée de la tradition. Broderies raffinées et tissu de qualité.",
+        stock: 6,
+        rating: 4.7,
+        reviews: 55,
+        tags: ["jalaba", "tradition", "élégant"],
+        colors: [
+          { name: "Blanc", code: "#FFFFFF", border: "#E5E5E5" },
+          { name: "Beige", code: "#F5F5DC" },
+          { name: "Or", code: "#FFD700" },
+        ],
+        images: ["img/jalaba.jpg", "img/jalaba.jpg", "img/jalaba.jpg"],
+      },
+      {
+        id: "14",
+        name: "Jalaba Style 2",
+        category: "Vêtements",
+        price: 7000,
+        image: "img/jalaba2.jpg",
+        description:
+          "Deuxième modèle de jalaba, raffiné et tendance. Design moderne avec touches traditionnelles.",
+        stock: 7,
+        rating: 4.6,
+        reviews: 48,
+        tags: ["jalaba", "raffiné", "mode"],
+        colors: [
+          { name: "Bleu", code: "#87CEEB" },
+          { name: "Blanc", code: "#FFFFFF", border: "#E5E5E5" },
+          { name: "Vert", code: "#90EE90" },
+        ],
+        images: ["img/jalaba2.jpg", "img/jalaba2.jpg", "img/jalaba2.jpg"],
+      },
+      {
+        id: "15",
+        name: "Pantalon Taille Hanche",
+        category: "Vêtements",
+        price: 4500,
+        image: "img/hanche1.jpg",
+        description:
+          "Pantalon taille basse moderne. Coupe ajustée et tendance.",
+        stock: 10,
+        rating: 4.5,
+        reviews: 47,
+        tags: ["pantalon", "hanche", "mode"],
+        colors: [
+          { name: "Noir", code: "#2C2C2C" },
+          { name: "Beige", code: "#F5F5DC" },
+          { name: "Bleu", code: "#87CEEB" },
+        ],
+        images: ["img/hanche1.jpg", "img/hanche1.jpg", "img/hanche1.jpg"],
+      },
+      {
+        id: "16",
+        name: "Pantalon Taille Hanche 2",
+        category: "Vêtements",
+        price: 4500,
+        image: "img/hanche2.jpg",
+        description:
+          "Deuxième modèle de pantalon taille basse. Style moderne et confortable.",
+        stock: 12,
+        rating: 4.6,
+        reviews: 51,
+        tags: ["pantalon", "hanche", "stylé"],
+        colors: [
+          { name: "Marron", code: "#8B4513" },
+          { name: "Noir", code: "#2C2C2C" },
+          { name: "Beige", code: "#F5F5DC" },
+        ],
+        images: ["img/hanche2.jpg", "img/hanche2.jpg", "img/hanche2.jpg"],
+      },
+      {
+        id: "17",
+        name: "Abaya",
+        category: "Vêtements",
+        price: 4500,
+        image: "img/abaya.jpg",
+        description:
+          "Abaya élégante et moderne. Coupe fluide et confortable pour un style raffiné.",
+        stock: 10,
+        rating: 4.5,
+        reviews: 47,
+        tags: ["abaya", "élégant", "mode"],
+        colors: [
+          { name: "Noir", code: "#2C2C2C" },
+          { name: "Beige", code: "#F5F5DC" },
+          { name: "Gris", code: "#808080" },
+        ],
+        images: ["img/abaya.jpg", "img/abaya.jpg", "img/abaya.jpg"],
+      },
+      {
+        id: "18",
+        name: "Collant",
+        category: "Vêtements",
+        price: 2000,
+        image: "img/collant.jpg",
+        description:
+          "Collant tendance et confortable. Idéal pour compléter vos tenues.",
+        stock: 25,
+        rating: 4.4,
+        reviews: 38,
+        tags: ["collant", "mode", "accessoire"],
+        colors: [
+          { name: "Noir", code: "#2C2C2C" },
+          { name: "Beige", code: "#F5F5DC" },
+        ],
+        images: ["img/collant.jpg", "img/collant.jpg", "img/collant.jpg"],
+      },
+      {
+        id: "19",
+        name: "Ensemble Classique",
+        category: "Vêtements",
+        price: 6500,
+        image: "img/ensembleclass.jpg",
+        description:
+          "Ensemble classique pour toutes les occasions. Style simple et chic.",
+        stock: 8,
+        rating: 4.6,
+        reviews: 42,
+        tags: ["ensemble", "classique", "mode"],
+        colors: [
+          { name: "Noir", code: "#2C2C2C" },
+          { name: "Blanc", code: "#FFFFFF" },
+        ],
+        images: [
+          "img/ensembleclass.jpg",
+          "img/ensembleclass.jpg",
+          "img/ensembleclass.jpg",
+        ],
+      },
+      {
+        id: "20",
+        name: "Ensemble Rouge",
+        category: "Vêtements",
+        price: 6000,
+        image: "img/ensembleRouge.jpg",
+        description:
+          "Ensemble rouge élégant et vibrant. Parfait pour un style affirmé.",
+        stock: 7,
+        rating: 4.7,
+        reviews: 40,
+        tags: ["ensemble", "rouge", "mode"],
+        colors: [
+          { name: "Rouge", code: "#FF0000" },
+          { name: "Noir", code: "#2C2C2C" },
+        ],
+        images: [
+          "img/ensembleRouge.jpg",
+          "img/ensembleRouge.jpg",
+          "img/ensembleRouge.jpg",
+        ],
+      },
+      {
+        id: "21",
+        name: "Ensemble Moderne",
+        category: "Vêtements",
+        price: 6000,
+        image: "img/ensenble.jpg",
+        description:
+          "Ensemble moderne et confortable. Convient à toutes les occasions.",
+        stock: 9,
+        rating: 4.5,
+        reviews: 33,
+        tags: ["ensemble", "mode"],
+        colors: [
+          { name: "Gris", code: "#808080" },
+          { name: "Noir", code: "#2C2C2C" },
+        ],
+        images: ["img/ensenble.jpg", "img/ensenble.jpg", "img/ensenble.jpg"],
+      },
+      {
+        id: "22",
+        name: "Guén",
+        category: "Vêtements",
+        price: 5000,
+        image: "img/guen.jpg",
+        description:
+          "Guén traditionnel revisité pour un style moderne et raffiné.",
+        stock: 6,
+        rating: 4.6,
+        reviews: 29,
+        tags: ["tradition", "mode"],
+        colors: [
+          { name: "Beige", code: "#F5F5DC" },
+          { name: "Noir", code: "#2C2C2C" },
+        ],
+        images: ["img/guen.jpg", "img/guen.jpg", "img/guen.jpg"],
+      },
+      {
+        id: "23",
+        name: "Jean Class",
+        category: "Vêtements",
+        price: 7000,
+        image: "img/jean.jpg",
+        description:
+          "Jean classique coupe droite. Indispensable de la garde-robe.",
+        stock: 15,
+        rating: 4.5,
+        reviews: 41,
+        tags: ["jean", "classique"],
+        colors: [{ name: "Bleu denim", code: "#4682B4" }],
+        images: ["img/jean.jpg", "img/jean.jpg", "img/jean.jpg"],
+      },
+      {
+        id: "24",
+        name: "Jean Slim",
+        category: "Vêtements",
+        price: 7000,
+        image: "img/jean2.jpg",
+        description: "Jean slim ajusté pour un look moderne et élégant.",
+        stock: 12,
+        rating: 4.6,
+        reviews: 39,
+        tags: ["jean", "slim"],
+        colors: [
+          { name: "Bleu clair", code: "#87CEEB" },
+          { name: "Noir", code: "#2C2C2C" },
+        ],
+        images: ["img/jean2.jpg", "img/jean2.jpg", "img/jean2.jpg"],
+      },
+      {
+        id: "25",
+        name: "Jean Décontracté",
+        category: "Vêtements",
+        price: 7000,
+        image: "img/jean3.jpg",
+        description: "Jean décontracté, parfait pour un style casual.",
+        stock: 10,
+        rating: 4.4,
+        reviews: 28,
+        tags: ["jean", "casual"],
+        colors: [{ name: "Bleu denim", code: "#4682B4" }],
+        images: ["img/jean3.jpg", "img/jean3.jpg", "img/jean3.jpg"],
+      },
+      {
+        id: "26",
+        name: "Jogging Confort",
+        category: "Vêtements",
+        price: 7000,
+        image: "img/joggin.jpg",
+        description:
+          "Jogging confortable et pratique pour le sport ou la détente.",
+        stock: 18,
+        rating: 4.6,
+        reviews: 44,
+        tags: ["jogging", "confort", "sport"],
+        colors: [
+          { name: "Gris", code: "#808080" },
+          { name: "Noir", code: "#2C2C2C" },
+        ],
+        images: ["img/joggin.jpg", "img/joggin.jpg", "img/joggin.jpg"],
+      },
+      {
+        id: "27",
+        name: "Robe à Rayures",
+        category: "Vêtements",
+        price: 6000,
+        image: "img/robearayure.jpg",
+        description: "Robe à rayures élégante et moderne. Coupe flatteuse.",
+        stock: 8,
+        rating: 4.5,
+        reviews: 32,
+        tags: ["robe", "rayures", "mode"],
+        colors: [{ name: "Multicolore", code: "#DDD", border: "#999" }],
+        images: [
+          "img/robearayure.jpg",
+          "img/robearayure.jpg",
+          "img/robearayure.jpg",
+        ],
+      },
+      {
+        id: "28",
+        name: "Robe à Rayures 2",
+        category: "Vêtements",
+        price: 6000,
+        image: "img/robearayure2.jpg",
+        description: "Deuxième modèle de robe à rayures. Élégance assurée.",
+        stock: 7,
+        rating: 4.6,
+        reviews: 30,
+        tags: ["robe", "rayures", "mode"],
+        colors: [{ name: "Multicolore", code: "#DDD", border: "#999" }],
+        images: [
+          "img/robearayure2.jpg",
+          "img/robearayure2.jpg",
+          "img/robearayure2.jpg",
+        ],
+      },
+      {
+        id: "29",
+        name: "Robe Courte",
+        category: "Vêtements",
+        price: 6000,
+        image: "img/robeCourte.jpg",
+        description: "Robe courte chic et moderne. Parfaite pour l’été.",
+        stock: 11,
+        rating: 4.7,
+        reviews: 37,
+        tags: ["robe", "courte", "été"],
+        colors: [
+          { name: "Rouge", code: "#FF0000" },
+          { name: "Noir", code: "#2C2C2C" },
+        ],
+        images: [
+          "img/robeCourte.jpg",
+          "img/robeCourte.jpg",
+          "img/robeCourte.jpg",
+        ],
+      },
+      {
+        id: "30",
+        name: "Robe Rose Élégante",
+        category: "Vêtements",
+        price: 6000,
+        image: "img/robeRose.jpg",
+        description: "Robe rose élégante avec une coupe fluide et raffinée.",
+        stock: 9,
+        rating: 4.6,
+        reviews: 35,
+        tags: ["robe", "rose", "mode"],
+        colors: [
+          { name: "Rose", code: "#FFB6C1" },
+          { name: "Blanc", code: "#FFFFFF" },
+        ],
+        images: ["img/robeRose.jpg", "img/robeRose.jpg", "img/robeRose.jpg"],
+      },
+      {
+        id: "31",
+        name: "Robe Rose Style 2",
+        category: "Vêtements",
+        price: 6000,
+        image: "img/robeRose2.jpg",
+        description: "Deuxième modèle de robe rose. Style élégant et moderne.",
+        stock: 8,
+        rating: 4.5,
+        reviews: 29,
+        tags: ["robe", "rose", "mode"],
+        colors: [{ name: "Rose", code: "#FFB6C1" }],
+        images: ["img/robeRose2.jpg", "img/robeRose2.jpg", "img/robeRose2.jpg"],
+      },
+      {
+        id: "32",
+        name: "Madona",
+        category: "Vêtements",
+        price: 1500,
+        image: "img/madona.jpg",
+        description: "Robe Madona élégante et raffinée. Coupe moderne et chic.",
+        stock: 6,
+        rating: 4.7,
+        reviews: 28,
+        tags: ["robe", "madona", "mode"],
+        colors: [
+          { name: "Rouge", code: "#FF0000" },
+          { name: "Noir", code: "#2C2C2C" },
+        ],
+        images: ["img/madona.jpg", "img/madona.jpg", "img/madona.jpg"],
+      },
+      {
+        id: "33",
+        name: "Madona Style 2",
+        category: "Vêtements",
+        price: 2000,
+        image: "img/madona2.jpg",
+        description: "Deuxième modèle Madona. Élégant et tendance.",
+        stock: 5,
+        rating: 4.6,
+        reviews: 25,
+        tags: ["robe", "madona", "mode"],
+        colors: [
+          { name: "Noir", code: "#2C2C2C" },
+          { name: "Or", code: "#FFD700" },
+        ],
+        images: ["img/madona2.jpg", "img/madona2.jpg", "img/madona2.jpg"],
+      },
+      {
+        id: "34",
+        name: "Polo Classique",
+        category: "Vêtements",
+        price: 2500,
+        image: "img/polo.jpg",
+        description: "Polo classique en coton. Confortable et élégant.",
+        stock: 20,
+        rating: 4.5,
+        reviews: 40,
+        tags: ["polo", "classique"],
+        colors: [
+          { name: "Blanc", code: "#FFFFFF" },
+          { name: "Noir", code: "#2C2C2C" },
+        ],
+        images: ["img/polo.jpg", "img/polo.jpg", "img/polo.jpg"],
+      },
+      {
+        id: "36",
+        name: "Ensemble jogging + body",
+        category: "Vêtements",
+        price: 5000,
+        image: "img/ensemble1 .jpg",
+        description: "Ensemble en coton. Confortable et élégant.",
+        stock: 20,
+        rating: 4.5,
+        reviews: 40,
+        tags: ["polo", "classique"],
+        colors: [
+          { name: "Blanc", code: "#FFFFFF" },
+          { name: "Noir", code: "#2C2C2C" },
+          { name: "rouge", code: "#ff0000ff" },
+        ],
+        images: [
+          "img/ensemble1 .jpg",
+          "img/ensemble1 .jpg",
+          "img/ensemble1 .jpg",
+        ],
+      },
+      {
+        id: "37",
+        name: "Robe class",
+        category: "Vêtements",
+        price: 6000,
+        image: "img/robe.jpg",
+        description: "Confortable et élégant.",
+        stock: 20,
+        rating: 4.5,
+        reviews: 40,
+        tags: ["polo", "classique"],
+        colors: [
+          { name: "Blanc", code: "#FFFFFF" },
+          { name: "Noir", code: "#2C2C2C" },
+          { name: "vert", code: "#05ad38ff" },
+        ],
+        images: ["img/robe.jpg", "img/robe.jpg", "img/robe.jpg"],
+      },
+      {
+        id: "38",
+        name: "Robe Bleu class",
+        category: "Vêtements",
+        price: 5000,
+        image: "img/robe-bleu.jpeg",
+        description: "Confortable et élégant.",
+        stock: 20,
+        rating: 4.5,
+        reviews: 40,
+        tags: ["polo", "classique"],
+        colors: [
+          { name: "Blanc", code: "#FFFFFF" },
+          { name: "Noir", code: "#2C2C2C" },
+          { name: "vert", code: "#05ad38ff" },
+        ],
+        images: [
+          "img/robe-bleu.jpeg",
+          "img/robe-bleu.jpeg",
+          "img/robe-bleu.jpeg",
+        ],
+      },
+      {
+        id: "39",
+        name: "Robe Bleu class",
+        category: "Vêtements",
+        price: 5000,
+        image: "img/white_ensemble.jpg",
+        description: "Confortable et élégant.",
+        stock: 20,
+        rating: 4.5,
+        reviews: 40,
+        tags: ["polo", "classique"],
+        colors: [{ name: "Blanc", code: "#FFFFFF" }],
+        images: [
+          "img/white_ensemble.jpg",
+          "img/white_ensemble.jpg",
+          "img/white_ensemble.jpg",
+        ],
+      },
+    ];
 
     this.init();
   }
@@ -764,11 +813,11 @@ class EcommerceApp {
       this.updateUI();
       this.renderProducts();
       this.injectStyles();
-      
-      console.log('Glow by Astou - E-commerce app initialized successfully');
+
+      console.log("Glow by Astou - E-commerce app initialized successfully");
     } catch (error) {
-      console.error('Failed to initialize app:', error);
-      this.showToast('Erreur lors du chargement de l\'application', 'error');
+      console.error("Failed to initialize app:", error);
+      this.showToast("Erreur lors du chargement de l'application", "error");
     }
   }
 
@@ -1176,13 +1225,13 @@ class EcommerceApp {
     `;
 
     // Remove existing styles
-    const existingStyles = document.getElementById('product-detail-styles');
+    const existingStyles = document.getElementById("product-detail-styles");
     if (existingStyles) {
       existingStyles.remove();
     }
 
     // Add new styles
-    document.head.insertAdjacentHTML('beforeend', styles);
+    document.head.insertAdjacentHTML("beforeend", styles);
   }
 
   // Data Management
@@ -1208,7 +1257,10 @@ class EcommerceApp {
 
   saveToStorage(key, data) {
     try {
-      localStorage.setItem(this.config.storageKeys[key] || key, JSON.stringify(data));
+      localStorage.setItem(
+        this.config.storageKeys[key] || key,
+        JSON.stringify(data)
+      );
     } catch (error) {
       console.error(`Error saving ${key} to storage:`, error);
     }
@@ -1224,7 +1276,7 @@ class EcommerceApp {
   }
 
   formatPrice(price) {
-    const formatted = new Intl.NumberFormat('fr-FR').format(price);
+    const formatted = new Intl.NumberFormat("fr-FR").format(price);
     return `${formatted} ${this.config.currency}`;
   }
 
@@ -1242,17 +1294,17 @@ class EcommerceApp {
 
   // Product Management
   getProductById(id) {
-    return this.state.products.find(product => product.id === id);
+    return this.state.products.find((product) => product.id === id);
   }
 
   buildFilters() {
-    const categories = [...new Set(this.state.products.map(p => p.category))];
+    const categories = [...new Set(this.state.products.map((p) => p.category))];
     const categoryFilter = this.$(this.selectors.categoryFilter);
-    
+
     if (categoryFilter) {
       categoryFilter.innerHTML = '<option value="">Toutes catégories</option>';
-      categories.forEach(category => {
-        const option = document.createElement('option');
+      categories.forEach((category) => {
+        const option = document.createElement("option");
         option.value = category;
         option.textContent = category;
         categoryFilter.appendChild(option);
@@ -1263,11 +1315,11 @@ class EcommerceApp {
   filterProducts() {
     const { search, category, priceRange, sortBy } = this.state.filters;
 
-    this.state.filteredProducts = this.state.products.filter(product => {
+    this.state.filteredProducts = this.state.products.filter((product) => {
       const matchesSearch = this.matchesSearchTerm(product, search);
       const matchesCategory = !category || product.category === category;
       const matchesPrice = this.matchesPriceRange(product.price, priceRange);
-      
+
       return matchesSearch && matchesCategory && matchesPrice;
     });
 
@@ -1277,38 +1329,39 @@ class EcommerceApp {
 
   matchesSearchTerm(product, searchTerm) {
     if (!searchTerm) return true;
-    
+
     const term = searchTerm.toLowerCase();
     return (
       product.name.toLowerCase().includes(term) ||
       product.description.toLowerCase().includes(term) ||
       product.category.toLowerCase().includes(term) ||
-      (product.tags && product.tags.some(tag => tag.toLowerCase().includes(term)))
+      (product.tags &&
+        product.tags.some((tag) => tag.toLowerCase().includes(term)))
     );
   }
 
   matchesPriceRange(price, range) {
     if (!range) return true;
-    
-    if (range.includes('+')) {
-      const minPrice = parseInt(range.replace('+', ''));
+
+    if (range.includes("+")) {
+      const minPrice = parseInt(range.replace("+", ""));
       return price >= minPrice;
     } else {
-      const [min, max] = range.split('-').map(x => parseInt(x));
+      const [min, max] = range.split("-").map((x) => parseInt(x));
       return price >= min && price <= max;
     }
   }
 
   sortProducts(sortBy) {
     const sortFunctions = {
-      'name': (a, b) => a.name.localeCompare(b.name),
-      'price-asc': (a, b) => a.price - b.price,
-      'price-desc': (a, b) => b.price - a.price,
-      'rating': (a, b) => (b.rating || 0) - (a.rating || 0),
-      'newest': (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
+      name: (a, b) => a.name.localeCompare(b.name),
+      "price-asc": (a, b) => a.price - b.price,
+      "price-desc": (a, b) => b.price - a.price,
+      rating: (a, b) => (b.rating || 0) - (a.rating || 0),
+      newest: (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0),
     };
 
-    const sortFn = sortFunctions[sortBy] || sortFunctions['name'];
+    const sortFn = sortFunctions[sortBy] || sortFunctions["name"];
     this.state.filteredProducts.sort(sortFn);
   }
 
@@ -1322,8 +1375,12 @@ class EcommerceApp {
 
   createProductModal(product) {
     const isInWishlist = this.state.wishlist.includes(product.id);
-    const discountPercent = product.originalPrice ? 
-      Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
+    const discountPercent = product.originalPrice
+      ? Math.round(
+          ((product.originalPrice - product.price) / product.originalPrice) *
+            100
+        )
+      : 0;
 
     const modalHTML = `
       <div class="product-detail-overlay" id="productDetailOverlay">
@@ -1335,20 +1392,38 @@ class EcommerceApp {
           <div class="product-detail-content">
             <div class="product-images">
               <div class="main-image">
-                <img id="mainProductImage" src="${product.images[0]}" alt="${product.name}">
-                ${discountPercent > 0 ? `<div class="discount-badge">-${discountPercent}%</div>` : ''}
-                ${product.stock < 5 ? `<div class="stock-warning">Plus que ${product.stock}</div>` : ''}
+                <img id="mainProductImage" src="${product.images[0]}" alt="${
+      product.name
+    }">
+                ${
+                  discountPercent > 0
+                    ? `<div class="discount-badge">-${discountPercent}%</div>`
+                    : ""
+                }
+                ${
+                  product.stock < 5
+                    ? `<div class="stock-warning">Plus que ${product.stock}</div>`
+                    : ""
+                }
               </div>
-              ${product.images.length > 1 ? `
+              ${
+                product.images.length > 1
+                  ? `
                 <div class="image-thumbnails">
-                  ${product.images.map((img, index) => `
-                    <img class="thumbnail ${index === 0 ? 'active' : ''}" 
+                  ${product.images
+                    .map(
+                      (img, index) => `
+                    <img class="thumbnail ${index === 0 ? "active" : ""}" 
                          src="${img}" 
                          onclick="app.selectProductImage(${index})"
                          data-index="${index}">
-                  `).join('')}
+                  `
+                    )
+                    .join("")}
                 </div>
-              ` : ''}
+              `
+                  : ""
+              }
             </div>
 
             <div class="product-info">
@@ -1357,38 +1432,62 @@ class EcommerceApp {
                   <span class="product-category">${product.category}</span>
                   <h2 class="product-title">${product.name}</h2>
                 </div>
-                <button class="wish-btn ${isInWishlist ? 'active' : ''}" 
+                <button class="wish-btn ${isInWishlist ? "active" : ""}" 
                         onclick="app.toggleWishlist('${product.id}')">
-                  <ion-icon name="heart${isInWishlist ? '' : '-outline'}"></ion-icon>
+                  <ion-icon name="heart${
+                    isInWishlist ? "" : "-outline"
+                  }"></ion-icon>
                 </button>
               </div>
 
               <div class="product-price">
-                <span class="current-price">${this.formatPrice(product.price)}</span>
-                ${product.originalPrice ? `<span class="original-price">${this.formatPrice(product.originalPrice)}</span>` : ''}
+                <span class="current-price">${this.formatPrice(
+                  product.price
+                )}</span>
+                ${
+                  product.originalPrice
+                    ? `<span class="original-price">${this.formatPrice(
+                        product.originalPrice
+                      )}</span>`
+                    : ""
+                }
               </div>
 
-              ${product.rating ? `
+              ${
+                product.rating
+                  ? `
                 <div class="product-rating">
                   ${this.renderRating(product.rating, product.reviews)}
                 </div>
-              ` : ''}
+              `
+                  : ""
+              }
 
               <p class="product-description">${product.description}</p>
 
               <div class="color-selection">
                 <h4>Couleurs disponibles:</h4>
                 <div class="color-options">
-                  ${product.colors.map((color, index) => `
-                    <button class="color-option ${index === 0 ? 'active' : ''}" 
-                            style="background-color: ${color.code}; ${color.border ? `border: 3px solid ${color.border} !important;` : ''}"
+                  ${product.colors
+                    .map(
+                      (color, index) => `
+                    <button class="color-option ${index === 0 ? "active" : ""}" 
+                            style="background-color: ${color.code}; ${
+                        color.border
+                          ? `border: 3px solid ${color.border} !important;`
+                          : ""
+                      }"
                             title="${color.name}"
                             onclick="app.selectColor(${index})"
                             data-index="${index}">
                     </button>
-                  `).join('')}
+                  `
+                    )
+                    .join("")}
                 </div>
-                <span class="selected-color-name">${product.colors[0].name}</span>
+                <span class="selected-color-name">${
+                  product.colors[0].name
+                }</span>
               </div>
 
               <div class="quantity-selection">
@@ -1402,17 +1501,23 @@ class EcommerceApp {
                     <ion-icon name="add-outline"></ion-icon>
                   </button>
                 </div>
-                <span class="stock-info">Stock disponible: ${product.stock}</span>
+                <span class="stock-info">Stock disponible: ${
+                  product.stock
+                }</span>
               </div>
 
               <div class="action-buttons">
                 <button class="btn btn-primary" 
                         onclick="app.addToCartFromDetails('${product.id}')"
-                        ${product.stock < 1 ? 'disabled' : ''}>
+                        ${product.stock < 1 ? "disabled" : ""}>
                   <ion-icon name="bag-add-outline"></ion-icon>
-                  ${product.stock < 1 ? 'Rupture de stock' : 'Ajouter au panier'}
+                  ${
+                    product.stock < 1 ? "Rupture de stock" : "Ajouter au panier"
+                  }
                 </button>
-                <button class="btn btn-secondary" onclick="app.buyNow('${product.id}')">
+                <button class="btn btn-secondary" onclick="app.buyNow('${
+                  product.id
+                }')">
                   <ion-icon name="flash-outline"></ion-icon>
                   Acheter maintenant
                 </button>
@@ -1424,14 +1529,14 @@ class EcommerceApp {
     `;
 
     // Remove existing modal
-    const existingModal = document.getElementById('productDetailOverlay');
+    const existingModal = document.getElementById("productDetailOverlay");
     if (existingModal) {
       existingModal.remove();
     }
 
     // Add modal to DOM
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-    document.body.style.overflow = 'hidden';
+    document.body.insertAdjacentHTML("beforeend", modalHTML);
+    document.body.style.overflow = "hidden";
 
     // Store current product for reference
     this.currentDetailProduct = product;
@@ -1439,9 +1544,9 @@ class EcommerceApp {
 
     // Add click outside to close
     setTimeout(() => {
-      const overlay = document.getElementById('productDetailOverlay');
+      const overlay = document.getElementById("productDetailOverlay");
       if (overlay) {
-        overlay.addEventListener('click', (e) => {
+        overlay.addEventListener("click", (e) => {
           if (e.target === overlay) {
             this.closeProductDetails();
           }
@@ -1451,12 +1556,12 @@ class EcommerceApp {
   }
 
   closeProductDetails() {
-    const modal = document.getElementById('productDetailOverlay');
+    const modal = document.getElementById("productDetailOverlay");
     if (modal) {
-      modal.style.animation = 'fadeOut 0.3s ease-in forwards';
+      modal.style.animation = "fadeOut 0.3s ease-in forwards";
       setTimeout(() => {
         modal.remove();
-        document.body.style.overflow = '';
+        document.body.style.overflow = "";
       }, 300);
     }
     this.currentDetailProduct = null;
@@ -1466,14 +1571,14 @@ class EcommerceApp {
   selectProductImage(index) {
     if (!this.currentDetailProduct) return;
 
-    const mainImage = document.getElementById('mainProductImage');
-    const thumbnails = document.querySelectorAll('.thumbnail');
-    
+    const mainImage = document.getElementById("mainProductImage");
+    const thumbnails = document.querySelectorAll(".thumbnail");
+
     if (mainImage && this.currentDetailProduct.images[index]) {
       mainImage.src = this.currentDetailProduct.images[index];
-      
+
       thumbnails.forEach((thumb, i) => {
-        thumb.classList.toggle('active', i === index);
+        thumb.classList.toggle("active", i === index);
       });
     }
   }
@@ -1481,11 +1586,11 @@ class EcommerceApp {
   selectColor(index) {
     if (!this.currentDetailProduct) return;
 
-    const colorOptions = document.querySelectorAll('.color-option');
-    const colorNameEl = document.querySelector('.selected-color-name');
-    
+    const colorOptions = document.querySelectorAll(".color-option");
+    const colorNameEl = document.querySelector(".selected-color-name");
+
     colorOptions.forEach((option, i) => {
-      option.classList.toggle('active', i === index);
+      option.classList.toggle("active", i === index);
     });
 
     if (colorNameEl && this.currentDetailProduct.colors[index]) {
@@ -1497,16 +1602,16 @@ class EcommerceApp {
     if (!this.currentDetailProduct) return;
 
     const newQuantity = this.currentDetailQuantity + change;
-    
+
     if (newQuantity < 1 || newQuantity > this.currentDetailProduct.stock) {
       if (newQuantity > this.currentDetailProduct.stock) {
-        this.showToast('Stock insuffisant', 'warning');
+        this.showToast("Stock insuffisant", "warning");
       }
       return;
     }
 
     this.currentDetailQuantity = newQuantity;
-    const quantityEl = document.getElementById('detailQuantity');
+    const quantityEl = document.getElementById("detailQuantity");
     if (quantityEl) {
       quantityEl.textContent = this.currentDetailQuantity;
     }
@@ -1518,8 +1623,11 @@ class EcommerceApp {
     for (let i = 0; i < this.currentDetailQuantity; i++) {
       this.addToCart(productId);
     }
-    
-    this.showToast(`${this.currentDetailQuantity} produit(s) ajouté(s) au panier`, 'success');
+
+    this.showToast(
+      `${this.currentDetailQuantity} produit(s) ajouté(s) au panier`,
+      "success"
+    );
   }
 
   buyNow(productId) {
@@ -1541,59 +1649,100 @@ class EcommerceApp {
     }
 
     const productsHTML = this.state.filteredProducts
-      .map(product => this.renderProductCard(product))
-      .join('');
+      .map((product) => this.renderProductCard(product))
+      .join("");
 
     grid.innerHTML = productsHTML;
   }
 
   renderProductCard(product) {
     const isInWishlist = this.state.wishlist.includes(product.id);
-    const discountPercent = product.originalPrice ? 
-      Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
+    const discountPercent = product.originalPrice
+      ? Math.round(
+          ((product.originalPrice - product.price) / product.originalPrice) *
+            100
+        )
+      : 0;
 
     return `
       <div class="card" data-id="${product.id}">
-        ${discountPercent > 0 ? `<div class="discount-badge">-${discountPercent}%</div>` : ''}
-        ${product.stock < 5 ? `<div class="stock-warning">Plus que ${product.stock}</div>` : ''}
+        ${
+          discountPercent > 0
+            ? `<div class="discount-badge">-${discountPercent}%</div>`
+            : ""
+        }
+        ${
+          product.stock < 5
+            ? `<div class="stock-warning">Plus que ${product.stock}</div>`
+            : ""
+        }
         
-        <button class="wish-btn ${isInWishlist ? 'active' : ''}" 
+        <button class="wish-btn ${isInWishlist ? "active" : ""}" 
                 onclick="app.toggleWishlist('${product.id}')">
-          <ion-icon name="heart${isInWishlist ? '' : '-outline'}"></ion-icon>
+          <ion-icon name="heart${isInWishlist ? "" : "-outline"}"></ion-icon>
         </button>
         
-        <div class="card-image" onclick="app.showProductDetails('${product.id}')" style="cursor: pointer;">
+        <div class="card-image" onclick="app.showProductDetails('${
+          product.id
+        }')" style="cursor: pointer;">
           <img src="${product.image}" alt="${product.name}" loading="lazy">
         </div>
         
         <div class="card-body">
-          <h4 class="card-title" onclick="app.showProductDetails('${product.id}')" style="cursor: pointer;">${product.name}</h4>
+          <h4 class="card-title" onclick="app.showProductDetails('${
+            product.id
+          }')" style="cursor: pointer;">${product.name}</h4>
           <p class="card-desc">${this.truncateText(product.description, 80)}</p>
           
-          ${product.rating ? this.renderRating(product.rating, product.reviews) : ''}
+          ${
+            product.rating
+              ? this.renderRating(product.rating, product.reviews)
+              : ""
+          }
           
           <div class="card-price">
             ${this.formatPrice(product.price)}
-            ${product.originalPrice ? `<span class="original-price">${this.formatPrice(product.originalPrice)}</span>` : ''}
+            ${
+              product.originalPrice
+                ? `<span class="original-price">${this.formatPrice(
+                    product.originalPrice
+                  )}</span>`
+                : ""
+            }
           </div>
           
           <div class="color-preview">
-            ${product.colors.slice(0, 4).map(color => `
+            ${product.colors
+              .slice(0, 4)
+              .map(
+                (color) => `
               <span class="color-dot" 
-                    style="background-color: ${color.code}; ${color.border ? `border: 1px solid ${color.border};` : ''}" 
+                    style="background-color: ${color.code}; ${
+                  color.border ? `border: 1px solid ${color.border};` : ""
+                }" 
                     title="${color.name}"></span>
-            `).join('')}
-            ${product.colors.length > 4 ? `<span class="more-colors">+${product.colors.length - 4}</span>` : ''}
+            `
+              )
+              .join("")}
+            ${
+              product.colors.length > 4
+                ? `<span class="more-colors">+${
+                    product.colors.length - 4
+                  }</span>`
+                : ""
+            }
           </div>
           
           <div class="card-footer">
             <button class="btn btn-primary" 
                     onclick="app.addToCart('${product.id}')"
-                    ${product.stock < 1 ? 'disabled' : ''}>
+                    ${product.stock < 1 ? "disabled" : ""}>
               <ion-icon name="add-outline"></ion-icon>
-              ${product.stock < 1 ? 'Rupture' : 'Ajouter'}
+              ${product.stock < 1 ? "Rupture" : "Ajouter"}
             </button>
-            <button class="btn btn-outline" onclick="app.showProductDetails('${product.id}')">
+            <button class="btn btn-outline" onclick="app.showProductDetails('${
+              product.id
+            }')">
               <ion-icon name="eye-outline"></ion-icon>
               Voir
             </button>
@@ -1604,10 +1753,14 @@ class EcommerceApp {
   }
 
   renderRating(rating, reviewCount) {
-    const stars = Array.from({length: 5}, (_, i) => 
-      `<ion-icon name="star${i < Math.floor(rating) ? '' : '-outline'}"></ion-icon>`
-    ).join('');
-    
+    const stars = Array.from(
+      { length: 5 },
+      (_, i) =>
+        `<ion-icon name="star${
+          i < Math.floor(rating) ? "" : "-outline"
+        }"></ion-icon>`
+    ).join("");
+
     return `
       <div class="rating">
         ${stars}
@@ -1640,8 +1793,8 @@ class EcommerceApp {
     }
 
     const cartHTML = this.state.cart
-      .map(item => this.renderCartItem(item))
-      .join('');
+      .map((item) => this.renderCartItem(item))
+      .join("");
 
     container.innerHTML = cartHTML;
     this.updateCartTotal();
@@ -1685,15 +1838,15 @@ class EcommerceApp {
   addToCart(productId) {
     const product = this.getProductById(productId);
     if (!product || product.stock < 1) {
-      this.showToast('Produit non disponible', 'error');
+      this.showToast("Produit non disponible", "error");
       return;
     }
 
-    const existingItem = this.state.cart.find(item => item.id === productId);
-    
+    const existingItem = this.state.cart.find((item) => item.id === productId);
+
     if (existingItem) {
       if (existingItem.quantity >= product.stock) {
-        this.showToast('Stock insuffisant', 'warning');
+        this.showToast("Stock insuffisant", "warning");
         return;
       }
       existingItem.quantity++;
@@ -1704,41 +1857,41 @@ class EcommerceApp {
         price: product.price,
         image: product.image,
         quantity: 1,
-        maxStock: product.stock
+        maxStock: product.stock,
       });
     }
 
-    this.saveToStorage('cart', this.state.cart);
+    this.saveToStorage("cart", this.state.cart);
     this.updateCartCount();
-    this.showToast('Produit ajouté au panier', 'success');
+    this.showToast("Produit ajouté au panier", "success");
   }
 
   removeFromCart(productId) {
-    this.state.cart = this.state.cart.filter(item => item.id !== productId);
-    this.saveToStorage('cart', this.state.cart);
+    this.state.cart = this.state.cart.filter((item) => item.id !== productId);
+    this.saveToStorage("cart", this.state.cart);
     this.updateCartCount();
     this.renderCart();
-    this.showToast('Produit retiré du panier', 'info');
+    this.showToast("Produit retiré du panier", "info");
   }
 
   updateQuantity(productId, change) {
-    const item = this.state.cart.find(item => item.id === productId);
+    const item = this.state.cart.find((item) => item.id === productId);
     if (!item) return;
 
     const newQuantity = item.quantity + change;
-    
+
     if (newQuantity <= 0) {
       this.removeFromCart(productId);
       return;
     }
 
     if (newQuantity > item.maxStock) {
-      this.showToast('Stock insuffisant', 'warning');
+      this.showToast("Stock insuffisant", "warning");
       return;
     }
 
     item.quantity = newQuantity;
-    this.saveToStorage('cart', this.state.cart);
+    this.saveToStorage("cart", this.state.cart);
     this.updateCartCount();
     this.renderCart();
   }
@@ -1746,44 +1899,47 @@ class EcommerceApp {
   updateCartCount() {
     const count = this.state.cart.reduce((sum, item) => sum + item.quantity, 0);
     const cartCountEl = this.$(this.selectors.cartCount);
-    
+
     if (cartCountEl) {
       cartCountEl.textContent = count;
-      cartCountEl.style.display = count > 0 ? 'flex' : 'none';
+      cartCountEl.style.display = count > 0 ? "flex" : "none";
     }
   }
 
   updateCartTotal() {
-    const subtotal = this.state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    
-    const subtotalEl = this.$('#subtotal');
-    const totalEl = this.$('#total');
-    
+    const subtotal = this.state.cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
+    const subtotalEl = this.$("#subtotal");
+    const totalEl = this.$("#total");
+
     if (subtotalEl) subtotalEl.textContent = this.formatPrice(subtotal);
     if (totalEl) totalEl.textContent = this.formatPrice(subtotal);
   }
 
   clearCart() {
     this.state.cart = [];
-    this.saveToStorage('cart', this.state.cart);
+    this.saveToStorage("cart", this.state.cart);
     this.updateCartCount();
     this.renderCart();
-    this.showToast('Panier vidé', 'info');
+    this.showToast("Panier vidé", "info");
   }
 
   // Wishlist Management
   toggleWishlist(productId) {
     const index = this.state.wishlist.indexOf(productId);
-    
+
     if (index > -1) {
       this.state.wishlist.splice(index, 1);
-      this.showToast('Retiré des favoris', 'info');
+      this.showToast("Retiré des favoris", "info");
     } else {
       this.state.wishlist.push(productId);
-      this.showToast('Ajouté aux favoris', 'success');
+      this.showToast("Ajouté aux favoris", "success");
     }
 
-    this.saveToStorage('wishlist', this.state.wishlist);
+    this.saveToStorage("wishlist", this.state.wishlist);
     this.updateWishCount();
     this.renderProducts();
   }
@@ -1791,24 +1947,24 @@ class EcommerceApp {
   updateWishCount() {
     const count = this.state.wishlist.length;
     const wishCountEl = this.$(this.selectors.wishCount);
-    
+
     if (wishCountEl) {
       wishCountEl.textContent = count;
-      wishCountEl.style.display = count > 0 ? 'flex' : 'none';
+      wishCountEl.style.display = count > 0 ? "flex" : "none";
     }
   }
 
   showWishlist() {
     if (!this.state.wishlist.length) {
-      this.showToast('Votre liste de souhaits est vide', 'info');
+      this.showToast("Votre liste de souhaits est vide", "info");
       return;
     }
-    
-    this.state.filteredProducts = this.state.products.filter(p => 
+
+    this.state.filteredProducts = this.state.products.filter((p) =>
       this.state.wishlist.includes(p.id)
     );
     this.renderProducts();
-    this.showToast('Liste de souhaits affichée', 'info');
+    this.showToast("Liste de souhaits affichée", "info");
   }
 
   // UI Management
@@ -1816,32 +1972,32 @@ class EcommerceApp {
     const modal = this.$(this.selectors.cartModal);
     if (!modal) return;
 
-    const isOpen = modal.classList.contains('open');
-    
+    const isOpen = modal.classList.contains("open");
+
     if (isOpen) {
-      modal.classList.remove('open');
-      document.body.style.overflow = '';
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
       this.state.ui.cartOpen = false;
     } else {
-      modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
       this.state.ui.cartOpen = true;
       this.renderCart();
     }
   }
 
-  showToast(message, type = 'success') {
+  showToast(message, type = "success") {
     const toast = this.$(this.selectors.toast);
     if (!toast) return;
 
-    const messageEl = toast.querySelector('#toastMessage') || toast;
+    const messageEl = toast.querySelector("#toastMessage") || toast;
     messageEl.textContent = message;
-    
-    toast.classList.remove('success', 'error', 'warning', 'info');
-    toast.classList.add(type, 'show');
-    
+
+    toast.classList.remove("success", "error", "warning", "info");
+    toast.classList.add(type, "show");
+
     setTimeout(() => {
-      toast.classList.remove('show');
+      toast.classList.remove("show");
     }, 3000);
   }
 
@@ -1852,10 +2008,10 @@ class EcommerceApp {
 
   clearFilters() {
     this.state.filters = {
-      search: '',
-      category: '',
-      priceRange: '',
-      sortBy: 'name'
+      search: "",
+      category: "",
+      priceRange: "",
+      sortBy: "name",
     };
 
     const searchInput = this.$(this.selectors.searchInput);
@@ -1863,10 +2019,10 @@ class EcommerceApp {
     const priceFilter = this.$(this.selectors.priceFilter);
     const sortFilter = this.$(this.selectors.sortFilter);
 
-    if (searchInput) searchInput.value = '';
-    if (categoryFilter) categoryFilter.value = '';
-    if (priceFilter) priceFilter.value = '';
-    if (sortFilter) sortFilter.value = 'name';
+    if (searchInput) searchInput.value = "";
+    if (categoryFilter) categoryFilter.value = "";
+    if (priceFilter) priceFilter.value = "";
+    if (sortFilter) sortFilter.value = "name";
 
     this.state.filteredProducts = [...this.state.products];
     this.renderProducts();
@@ -1875,30 +2031,37 @@ class EcommerceApp {
   // Checkout
   checkout() {
     if (!this.state.cart.length) {
-      this.showToast('Votre panier est vide', 'warning');
+      this.showToast("Votre panier est vide", "warning");
       return;
     }
 
-    const total = this.state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    
-    let message = '🛍️ *Nouvelle commande - Glow by Astou*\n\n';
-    message += '📋 *Détail de la commande:*\n';
-    
-    this.state.cart.forEach(item => {
+    const total = this.state.cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
+    let message = "🛍️ *Nouvelle commande - Glow by Astou*\n\n";
+    message += "📋 *Détail de la commande:*\n";
+
+    this.state.cart.forEach((item) => {
       const itemTotal = item.price * item.quantity;
       message += `• ${item.name}\n`;
-      message += `  Quantité: ${item.quantity} × ${this.formatPrice(item.price)} = ${this.formatPrice(itemTotal)}\n\n`;
+      message += `  Quantité: ${item.quantity} × ${this.formatPrice(
+        item.price
+      )} = ${this.formatPrice(itemTotal)}\n\n`;
     });
-    
+
     message += `💰 *TOTAL: ${this.formatPrice(total)}*\n\n`;
-    message += '📍 Merci de confirmer votre adresse de livraison.\n';
-    message += '🕐 Livraison sous 24-48h à Dakar';
-    
-    const whatsappUrl = `https://wa.me/${this.config.whatsappNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-    
+    message += "📍 Merci de confirmer votre adresse de livraison.\n";
+    message += "🕐 Livraison sous 24-48h à Dakar";
+
+    const whatsappUrl = `https://wa.me/${
+      this.config.whatsappNumber
+    }?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
+
     setTimeout(() => {
-      if (confirm('Commande envoyée ! Voulez-vous vider votre panier ?')) {
+      if (confirm("Commande envoyée ! Voulez-vous vider votre panier ?")) {
         this.clearCart();
         this.toggleCart();
       }
@@ -1909,15 +2072,18 @@ class EcommerceApp {
   attachEvents() {
     const searchInput = this.$(this.selectors.searchInput);
     if (searchInput) {
-      searchInput.addEventListener('input', this.debounce((e) => {
-        this.state.filters.search = e.target.value;
-        this.filterProducts();
-      }, 300));
+      searchInput.addEventListener(
+        "input",
+        this.debounce((e) => {
+          this.state.filters.search = e.target.value;
+          this.filterProducts();
+        }, 300)
+      );
     }
 
     const categoryFilter = this.$(this.selectors.categoryFilter);
     if (categoryFilter) {
-      categoryFilter.addEventListener('change', (e) => {
+      categoryFilter.addEventListener("change", (e) => {
         this.state.filters.category = e.target.value;
         this.filterProducts();
       });
@@ -1925,7 +2091,7 @@ class EcommerceApp {
 
     const priceFilter = this.$(this.selectors.priceFilter);
     if (priceFilter) {
-      priceFilter.addEventListener('change', (e) => {
+      priceFilter.addEventListener("change", (e) => {
         this.state.filters.priceRange = e.target.value;
         this.filterProducts();
       });
@@ -1933,7 +2099,7 @@ class EcommerceApp {
 
     const sortFilter = this.$(this.selectors.sortFilter);
     if (sortFilter) {
-      sortFilter.addEventListener('change', (e) => {
+      sortFilter.addEventListener("change", (e) => {
         this.state.filters.sortBy = e.target.value;
         this.filterProducts();
       });
@@ -1941,27 +2107,27 @@ class EcommerceApp {
 
     const cartBtn = this.$(this.selectors.cartBtn);
     if (cartBtn) {
-      cartBtn.addEventListener('click', () => this.toggleCart());
+      cartBtn.addEventListener("click", () => this.toggleCart());
     }
 
-    const closeCart = this.$('#closeCart');
+    const closeCart = this.$("#closeCart");
     if (closeCart) {
-      closeCart.addEventListener('click', () => this.toggleCart());
+      closeCart.addEventListener("click", () => this.toggleCart());
     }
 
     const wishBtn = this.$(this.selectors.wishBtn);
     if (wishBtn) {
-      wishBtn.addEventListener('click', () => this.showWishlist());
+      wishBtn.addEventListener("click", () => this.showWishlist());
     }
 
-    const checkoutBtn = this.$('#checkoutBtn');
+    const checkoutBtn = this.$("#checkoutBtn");
     if (checkoutBtn) {
-      checkoutBtn.addEventListener('click', () => this.checkout());
+      checkoutBtn.addEventListener("click", () => this.checkout());
     }
 
     const cartModal = this.$(this.selectors.cartModal);
     if (cartModal) {
-      cartModal.addEventListener('click', (e) => {
+      cartModal.addEventListener("click", (e) => {
         if (e.target === cartModal) {
           this.toggleCart();
         }
@@ -1969,12 +2135,12 @@ class EcommerceApp {
     }
 
     // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
         if (this.state.ui.cartOpen) {
           this.toggleCart();
         }
-        if (document.getElementById('productDetailOverlay')) {
+        if (document.getElementById("productDetailOverlay")) {
           this.closeProductDetails();
         }
       }
@@ -1983,14 +2149,16 @@ class EcommerceApp {
 
   // Utility methods
   truncateText(text, maxLength) {
-    return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+    return text.length > maxLength
+      ? text.substring(0, maxLength) + "..."
+      : text;
   }
 }
 
 // Initialize the application
 let app;
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   app = new EcommerceApp();
 });
 
@@ -2007,5 +2175,5 @@ window.app = {
   selectColor: (index) => app?.selectColor(index),
   updateDetailQuantity: (change) => app?.updateDetailQuantity(change),
   addToCartFromDetails: (id) => app?.addToCartFromDetails(id),
-  buyNow: (id) => app?.buyNow(id)
+  buyNow: (id) => app?.buyNow(id),
 };
